@@ -219,7 +219,9 @@
             flex-direction: row-reverse;
         }
 
+        /* Estilização para o Slider */
         .timeline-card-image {
+            position: relative;
             flex: 0 0 35%;
             min-height: 300px;
             border-radius: 8px;
@@ -230,23 +232,47 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-text-light);
-            font-style: italic;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.95rem;
         }
 
         .timeline-card-image img {
+            display: none; /* Esconde todas as imagens por padrão */
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .timeline-card:hover .timeline-card-image img {
-            transform: scale(1.05);
+        .timeline-card-image img.active {
+            display: block; /* Mostra apenas a ativa */
         }
+
+        /* Setas do Slider */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--color-moss-green);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 2;
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s, background 0.3s;
+            user-select: none;
+        }
+
+        .timeline-card-image:hover .slider-arrow {
+            opacity: 1; /* Aparecem no hover */
+        }
+
+        .slider-arrow:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .arrow-left { left: 0; border-radius: 0 5px 5px 0; }
+        .arrow-right { right: 0; border-radius: 5px 0 0 5px; }
 
         .timeline-card-content {
             flex: 1;
@@ -379,175 +405,43 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            section {
-                padding: 40px 15px;
-                max-width: 100%;
-            }
-
-            .timeline-card {
-                flex-direction: column !important;
-                gap: 20px;
-                margin-bottom: 60px;
-            }
-
-            .timeline-card-image {
-                flex: 0 0 100%;
-                min-height: 250px;
-                width: 100%;
-            }
-
-            .timeline-card-content {
-                flex: 1;
-                padding: 20px;
-                text-align: center;
-            }
-
-            .timeline-card h3 {
-                font-size: 1.5rem;
-                display: block;
-            }
-
-            .timeline-card p {
-                font-size: 1rem;
-                text-align: center;
-            }
-
-            .highlight-section {
-                padding: 30px 20px;
-            }
-
-            .highlight-section h4 {
-                font-size: 1.5rem;
-            }
-
-            #floating-play {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .corner-top-left {
-                width: 100px;
-                height: 100px;
-            }
-
-            .corner-bottom-right {
-                width: 120px;
-                height: 120px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            section {
-                padding: 30px 10px;
-            }
-
-            .timeline-card {
-                flex-direction: column !important;
-                gap: 15px;
-                margin-bottom: 40px;
-            }
-
-            .timeline-card-image {
-                flex: 0 0 100%;
-                min-height: 200px;
-                width: 100%;
-            }
-
-            .timeline-card-content {
-                padding: 15px;
-            }
-
-            .timeline-card h3 {
-                font-size: 1.3rem;
-                display: block;
-            }
-
-            .timeline-card p {
-                font-size: 0.95rem;
-                text-align: center;
-            }
-
-            .highlight-section {
-                padding: 20px 15px;
-            }
-
-            .highlight-section h4 {
-                font-size: 1.3rem;
-            }
-
-            .map-btn {
-                font-size: 0.8rem;
-                padding: 8px 15px;
-            }
-
-            #floating-play {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-                bottom: 15px;
-                right: 15px;
-            }
-
-            footer p {
-                font-size: 0.85rem;
-                letter-spacing: 2px;
-            }
-
-            .corner-top-left,
-            .corner-bottom-right {
-                display: none;
-            }
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            section { padding: 40px 15px; max-width: 100%; }
+            .timeline-card { flex-direction: column !important; gap: 20px; margin-bottom: 60px; }
+            .timeline-card-image { flex: 0 0 100%; min-height: 250px; width: 100%; }
+            .slider-arrow { opacity: 0.6; } /* Visíveis no mobile */
         }
     </style>
 </head>
 <body>
 
-    <!-- Decorative Elements -->
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="decorative-corner corner-bottom-right" alt="decorative ornament">
 
-    <!-- Audio -->
     <audio id="musicaTema" loop>
         <source src="link-da-musica.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Floating Play Button -->
     <button id="floating-play" onclick="toggleMusic()" title="Tocar música">
         ♪
     </button>
 
-    <!-- Header -->
     <header>
         <h1>Carol & Filipe</h1>
         <p class="subtitle">A morada dos meus sonhos</p>
         <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-musical-notes-divider-Rr8n2gLwKfew28VKY2ejcX.webp" class="sheet-music-decoration" alt="musical notes divider">
     </header>
 
-    <!-- Main Content -->
     <section>
-        <!-- Card 1: Image Left -->
         <div class="timeline-card image-left">
-            <div class="timeline-card-image">
-                <img src="011225 - Bíblia perdida.jpeg" alt="12 de Janeiro">
+            <div class="timeline-card-image" id="slider-12-jan">
+                <button class="slider-arrow arrow-left" onclick="moveSlide('slider-12-jan', -1)">❮</button>
+                
+                <img src="011225 - Bíblia perdida.jpeg" class="active" alt="Bíblia Perdida">
+                <img src="011225 - Primeira Mensagem.jpeg" alt="Primeira Mensagem">
+                
+                <button class="slider-arrow arrow-right" onclick="moveSlide('slider-12-jan', 1)">❯</button>
             </div>
             <div class="timeline-card-content">
                 <h3>12 de Janeiro</h3>
@@ -556,10 +450,9 @@
             </div>
         </div>
 
-        <!-- Card 2: Image Right -->
         <div class="timeline-card image-right">
             <div class="timeline-card-image">
-                <img src="011225 - Primeira Mensagem.jpeg" alt="22 de Março">
+                <img src="011225 - Primeira Mensagem.jpeg" class="active" alt="22 de Março">
             </div>
             <div class="timeline-card-content">
                 <h3>22 de Março</h3>
@@ -568,16 +461,14 @@
             </div>
         </div>
 
-        <!-- Highlight Section: 04 de Maio -->
         <div class="highlight-section">
             <h4>04 de Maio</h4>
             <p>Nascemos no mesmo dia. Um espelho de almas. Em pouco tempo, nossos segredos não eram mais segredos, e o nosso passado se tornou base para o nosso futuro.</p>
         </div>
 
-        <!-- Card 3: Image Left -->
         <div class="timeline-card image-left">
             <div class="timeline-card-image">
-                <img src="" alt="09 de Abril">
+                <img src="" class="active" alt="09 de Abril">
             </div>
             <div class="timeline-card-content">
                 <h3>09 de Abril</h3>
@@ -586,10 +477,9 @@
             </div>
         </div>
 
-        <!-- Card 4: Image Right -->
         <div class="timeline-card image-right">
             <div class="timeline-card-image">
-                <img src="" alt="25 de Maio">
+                <img src="" class="active" alt="25 de Maio">
             </div>
             <div class="timeline-card-content">
                 <h3>25 de Maio</h3>
@@ -597,7 +487,6 @@
             </div>
         </div>
 
-        <!-- Highlight Section: Se eu crer -->
         <div class="highlight-section double-border">
             <h4>"Se eu crer"</h4>
             <p>O primeiro hino que você me enviou. A trilha sonora da nossa fé.</p>
@@ -605,13 +494,11 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>CONTAGEM • SABARÁ • BH</p>
         <p>NOSSO "SIM" ESTÁ CHEGANDO: ABRIL DE 2027</p>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         const audio = document.getElementById('musicaTema');
         const playButton = document.getElementById('floating-play');
@@ -627,6 +514,32 @@
                 audio.pause();
                 playButton.style.animation = 'softPulse 3s ease-in-out infinite';
             }
+        }
+
+        // Função do Slider
+        function moveSlide(sliderId, direction) {
+            const slider = document.getElementById(sliderId);
+            const imgs = slider.getElementsByTagName('img');
+            let activeIdx = -1;
+
+            // Acha qual imagem está ativa
+            for (let i = 0; i < imgs.length; i++) {
+                if (imgs[i].classList.contains('active')) {
+                    activeIdx = i;
+                    break;
+                }
+            }
+
+            // Remove a classe active da atual
+            imgs[activeIdx].classList.remove('active');
+
+            // Calcula a próxima
+            let nextIdx = activeIdx + direction;
+            if (nextIdx >= imgs.length) nextIdx = 0;
+            if (nextIdx < 0) nextIdx = imgs.length - 1;
+
+            // Ativa a próxima
+            imgs[nextIdx].classList.add('active');
         }
 
         // Smooth scroll behavior
