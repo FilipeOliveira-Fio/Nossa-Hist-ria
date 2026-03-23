@@ -547,7 +547,7 @@
         <!-- Card 1: Image Left -->
         <div class="timeline-card image-left">
             <div class="timeline-card-image">
-                <img src="" alt="12 de Janeiro">
+                <img src="011225 - Bíblia perdida.jpeg" alt="12 de Janeiro">
             </div>
             <div class="timeline-card-content">
                 <h3>12 de Janeiro</h3>
@@ -642,63 +642,3 @@
     </script>
 </body>
 </html>
-<div class="carousel-container">
-    <div class="carousel-images">
-        <img src="011225 - Bíblia perdida.jpeg" class="carousel-image" alt="Bíblia perdida">
-        <img src="011225 - Primeira Mensagem.jpeg" class="carousel-image" alt="Primeira Mensagem">
-    </div>
-    <div class="prev" onclick="moveSlide(-1)">❮</div>
-    <div class="next" onclick="moveSlide(1)">❯</div>
-</div>
-
-<style>
-.carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-    overflow: hidden;
-}
-.carousel-images {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-.carousel-image {
-    min-width: 100%;
-}
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-}
-.prev {
-    left: 10px;
-}
-.next {
-    right: 10px;
-}
-.carousel-container:hover .prev,
-.carousel-container:hover .next {
-    display: block;
-}
-</style>
-
-<script>
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-image');
-
-function showSlide(index) {
-    currentSlide = (index + slides.length) % slides.length;
-    const offset = -currentSlide * 100;
-    document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
-}
-
-function moveSlide(step) {
-    showSlide(currentSlide + step);
-}
-showSlide(currentSlide);
-</script>
