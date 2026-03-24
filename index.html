@@ -456,13 +456,11 @@
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="decorative-corner corner-bottom-right" alt="decorative ornament">
 
-    <!-- Elemento de Áudio -->
     <audio id="musicaTema" loop preload="auto">
-        <source src="https://github.com/FilipeOliveira-Fio/Nossa-Hist-ria/blob/main/musica.mp3" type="audio/mpeg">
+        <source src="musica.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
 
-    <!-- Botão de Play Flutuante -->
     <button id="floating-play" onclick="toggleMusic()" title="Tocar música">
         ♪
     </button>
@@ -520,6 +518,19 @@
         </div>
 
         <div class="timeline-card image-right">
+            <div class="timeline-card-image" id="slider-12-abr">
+                <button class="slider-arrow arrow-left" onclick="moveSlide('slider-12-abr', -1)">❮</button>
+                <img src="120425 - Encontro Parque Ecológico.jpeg" class="active" alt="Primeiro Passeio">
+                <button class="slider-arrow arrow-right" onclick="moveSlide('slider-12-abr', 1)">❯</button>
+            </div>
+            <div class="timeline-card-content">
+                <h3>12 de Abril</h3>
+                <p>Nosso primeiro passeio oficial no Parque Ecológico. Entre conversas e caminhadas, criamos uma intimidade que apenas confirmava o que já sentíamos.</p>
+                <a href="https://maps.app.goo.gl/fkAvq15z9x3goNQY6" class="map-btn">Onde nossa intimidade floresceu</a>
+            </div>
+        </div>
+
+        <div class="timeline-card image-left">
             <div class="timeline-card-image" id="slider-25-mai">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-25-mai', -1)">❮</button>
                 <img src="" class="active" alt="25 de Maio">
@@ -527,7 +538,7 @@
             </div>
             <div class="timeline-card-content">
                 <h3>25 de Maio</h3>
-                <p>Dentro daquele carro, o pedido. A adaptação de dois mundos que, em tão pouco tempo, se tornaram um só.</p>
+                <p>Dentro daquele carro, o pedido oficial de namoro. A adaptação de dois mundos que, em tão pouco tempo, se tornaram um só.</p>
             </div>
         </div>
 
@@ -550,57 +561,32 @@
         // Função para alternar música
         function toggleMusic() {
             if (audio.paused) {
-                // Tenta reproduzir a música
                 const playPromise = audio.play();
                 
                 if (playPromise !== undefined) {
                     playPromise
                         .then(() => {
-                            // Reprodução iniciada com sucesso
                             playButton.classList.add('playing');
-                            console.log('Música iniciada com sucesso');
                         })
                         .catch(error => {
-                            // Erro na reprodução
                             console.error('Erro ao reproduzir música:', error);
-                            alert('Não foi possível reproduzir a música. Verifique se o arquivo "musica.mp3" está no mesmo diretório.');
                         });
                 }
             } else {
-                // Pausa a música
                 audio.pause();
                 playButton.classList.remove('playing');
-                console.log('Música pausada');
             }
         }
-
-        // Atualizar estado do botão quando a música termina
-        audio.addEventListener('ended', () => {
-            playButton.classList.remove('playing');
-            console.log('Música finalizada');
-        });
-
-        // Atualizar estado do botão quando a música é pausada externamente
-        audio.addEventListener('pause', () => {
-            playButton.classList.remove('playing');
-        });
-
-        // Atualizar estado do botão quando a música começa a tocar
-        audio.addEventListener('play', () => {
-            playButton.classList.add('playing');
-        });
 
         // Função do Slider Universal
         function moveSlide(sliderId, direction) {
             const slider = document.getElementById(sliderId);
             const imgs = slider.getElementsByTagName('img');
             
-            // Se houver apenas uma imagem, não faz nada
             if (imgs.length <= 1) return;
 
             let activeIdx = -1;
 
-            // Acha qual imagem está ativa
             for (let i = 0; i < imgs.length; i++) {
                 if (imgs[i].classList.contains('active')) {
                     activeIdx = i;
@@ -608,15 +594,9 @@
                 }
             }
 
-            // Remove a classe active da atual
             imgs[activeIdx].classList.remove('active');
 
-            // Calcula a próxima de forma circular
-            let nextIdx = activeIdx + direction;
-            if (nextIdx >= imgs.length) nextIdx = 0;
-            if (nextIdx < 0) nextIdx = imgs.length - 1;
-
-            // Ativa a próxima
+            let nextIdx = (activeIdx + direction + imgs.length) % imgs.length;
             imgs[nextIdx].classList.add('active');
         }
 
