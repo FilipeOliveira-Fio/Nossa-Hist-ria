@@ -102,6 +102,26 @@
             }
         }
 
+        /* Animação de Reprodução - Ondas Sonoras */
+        @keyframes musicPlaying {
+            0%, 100% {
+                box-shadow: 
+                    0 0 0 0 rgba(201, 168, 118, 0.7),
+                    0 0 0 0 rgba(139, 157, 131, 0.5);
+            }
+            50% {
+                box-shadow: 
+                    0 0 0 10px rgba(201, 168, 118, 0),
+                    0 0 0 20px rgba(139, 157, 131, 0);
+            }
+        }
+
+        /* Animação de Rotação do Ícone */
+        @keyframes rotateIcon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Header Section */
         header {
             min-height: 100vh;
@@ -192,6 +212,17 @@
 
         #floating-play:active {
             transform: scale(0.95);
+        }
+
+        /* Estado de Reprodução */
+        #floating-play.playing {
+            animation: musicPlaying 1.5s ease-in-out infinite;
+        }
+
+        #floating-play.playing::before {
+            content: '';
+            position: absolute;
+            animation: rotateIcon 2s linear infinite;
         }
 
         /* Main Content */
@@ -412,6 +443,12 @@
             .timeline-card-image { flex: 0 0 100%; min-height: 250px; width: 100%; }
             .slider-arrow { opacity: 0.6; } /* Visíveis no mobile */
         }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            #floating-play { width: 60px; height: 60px; font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -419,10 +456,13 @@
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="decorative-corner corner-bottom-right" alt="decorative ornament">
 
-    <audio id="musicaTema" loop>
+    <!-- Elemento de Áudio -->
+    <audio id="musicaTema" loop preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
     </audio>
 
+    <!-- Botão de Play Flutuante -->
     <button id="floating-play" onclick="toggleMusic()" title="Tocar música">
         ♪
     </button>
@@ -474,7 +514,7 @@
             </div>
             <div class="timeline-card-content">
                 <h3>09 de Abril</h3>
-                <p>CCB Central. O primeiro beijo e a certeza de que "Dias de Luta, Dias de Glória" seria o nosso hino de victory.</p>
+                <p>CCB Central. O primeiro beijo e a certeza de que "Dias de Luta, Dias de Glória" seria o nosso hino de vitória.</p>
                 <a href="https://maps.app.goo.gl/qDv4HmChRf1ExQf46" class="map-btn">O marco do nosso beijo</a>
             </div>
         </div>
@@ -507,18 +547,48 @@
         const audio = document.getElementById('musicaTema');
         const playButton = document.getElementById('floating-play');
         
+        // Função para alternar música
         function toggleMusic() {
             if (audio.paused) {
-                audio.play();
-                playButton.style.animation = 'none';
-                setTimeout(() => {
-                    playButton.style.animation = 'softPulse 2s ease-in-out infinite';
-                }, 10);
+                // Tenta reproduzir a música
+                const playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            // Reprodução iniciada com sucesso
+                            playButton.classList.add('playing');
+                            console.log('Música iniciada com sucesso');
+                        })
+                        .catch(error => {
+                            // Erro na reprodução
+                            console.error('Erro ao reproduzir música:', error);
+                            alert('Não foi possível reproduzir a música. Verifique se o arquivo "musica.mp3" está no mesmo diretório.');
+                        });
+                }
             } else {
+                // Pausa a música
                 audio.pause();
-                playButton.style.animation = 'softPulse 3s ease-in-out infinite';
+                playButton.classList.remove('playing');
+                console.log('Música pausada');
             }
         }
+
+        // Atualizar estado do botão quando a música termina
+        audio.addEventListener('ended', () => {
+            playButton.classList.remove('playing');
+            console.log('Música finalizada');
+        });
+
+        // Atualizar estado do botão quando a música é pausada externamente
+        audio.addEventListener('pause', () => {
+            playButton.classList.remove('playing');
+        });
+
+        // Atualizar estado do botão quando a música começa a tocar
+        audio.addEventListener('play', () => {
+            playButton.classList.add('playing');
+        });
 
         // Função do Slider Universal
         function moveSlide(sliderId, direction) {
