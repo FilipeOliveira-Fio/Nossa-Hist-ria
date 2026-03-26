@@ -183,46 +183,81 @@
             animation: fadeInUp 1.4s ease-out;
         }
 
-        /* Floating Play Button */
-        #floating-play {
+        /* NOVO: Estilização do Music Player Flutuante */
+        .music-player-container {
             position: fixed;
             bottom: 30px;
             right: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            z-index: 1000;
+            gap: 12px;
+        }
+
+        .song-info {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--color-moss-green);
+            background: rgba(255, 248, 240, 0.85);
+            padding: 4px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--color-beige-warm);
+            backdrop-filter: blur(5px);
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 248, 240, 0.9);
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1px solid var(--color-terracotta);
+            box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--color-terracotta);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        .nav-btn:hover {
+            color: var(--color-moss-green);
+            transform: scale(1.1);
+        }
+
+        #floating-play {
             background: linear-gradient(135deg, var(--color-terracotta), var(--color-moss-green));
             color: var(--color-cream);
             border: 2px solid rgba(255, 248, 240, 0.5);
             border-radius: 50%;
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 30px rgba(201, 168, 118, 0.3);
-            z-index: 1000;
+            font-size: 1.4rem;
             transition: all 0.3s ease;
             animation: softPulse 3s ease-in-out infinite;
         }
 
-        #floating-play:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(201, 168, 118, 0.4);
-        }
-
-        #floating-play:active {
-            transform: scale(0.95);
-        }
-
-        /* Estado de Reprodução */
         #floating-play.playing {
             animation: musicPlaying 1.5s ease-in-out infinite;
-        }
-
-        #floating-play.playing::before {
-            content: '';
-            position: absolute;
-            animation: rotateIcon 2s linear infinite;
         }
 
         /* Main Content */
@@ -493,12 +528,12 @@
             .countdown-timer { gap: 10px; }
             .countdown-number { font-size: 1.8rem; }
             .countdown-item { min-width: 60px; }
+            .music-player-container { bottom: 20px; right: 20px; }
         }
 
         @media (max-width: 480px) {
             h1 { font-size: 1.8rem; }
             .subtitle { font-size: 1rem; }
-            #floating-play { width: 60px; height: 60px; font-size: 1.5rem; }
             .countdown-number { font-size: 1.5rem; }
             .countdown-label { font-size: 0.7rem; }
         }
@@ -511,12 +546,16 @@
 
     <audio id="musicaTema" loop preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
     </audio>
 
-    <button id="floating-play" onclick="toggleMusic()" title="Tocar música">
-        ♪
-    </button>
+    <div class="music-player-container">
+        <div id="song-info" class="song-info">Dias de Luta, Dias de Glória</div>
+        <div class="player-controls">
+            <button class="nav-btn" onclick="changeTrack(-1)" title="Anterior">❮</button>
+            <button id="floating-play" onclick="toggleMusic()" title="Tocar música">♪</button>
+            <button class="nav-btn" onclick="changeTrack(1)" title="Próxima">❯</button>
+        </div>
+    </div>
 
     <header>
         <h1>Carol & Filipe</h1>
@@ -636,17 +675,25 @@
     </footer>
 
     <script>
+        // CONFIGURAÇÃO DA PLAYLIST
+        const playlist = [
+            { title: "Dias de Luta, Dias de Glória", file: "musica.mp3" }, //
+            { title: "Explodir - Anavitória", file: "musica2.mp3" }, 
+            { title: "Leal - Djonga", file: "musica3.mp3" }
+        ];
+
+        let currentTrackIndex = 0;
         const audio = document.getElementById('musicaTema');
         const playButton = document.getElementById('floating-play');
+        const songInfo = document.getElementById('song-info');
         
-        // Função para alternar música
         function toggleMusic() {
             if (audio.paused) {
                 const playPromise = audio.play();
                 if (playPromise !== undefined) {
                     playPromise
                         .then(() => { playButton.classList.add('playing'); })
-                        .catch(error => { console.error('Erro ao reproduzir música:', error); });
+                        .catch(error => { console.error('Erro ao reproduzir:', error); });
                 }
             } else {
                 audio.pause();
@@ -654,7 +701,26 @@
             }
         }
 
-        // Função do Slider Universal
+        // Função para trocar de música (Próxima/Anterior)
+        function changeTrack(direction) {
+            currentTrackIndex += direction;
+            
+            // Loop na playlist
+            if (currentTrackIndex >= playlist.length) currentTrackIndex = 0;
+            if (currentTrackIndex < 0) currentTrackIndex = playlist.length - 1;
+
+            const isPlaying = !audio.paused;
+            
+            // Atualiza fonte e texto
+            audio.src = playlist[currentTrackIndex].file;
+            songInfo.innerText = playlist[currentTrackIndex].title;
+            
+            if (isPlaying) {
+                audio.play();
+            }
+        }
+
+        // Função do Slider Universal para as imagens
         function moveSlide(sliderId, direction) {
             const slider = document.getElementById(sliderId);
             const imgs = slider.getElementsByTagName('img');
@@ -675,7 +741,6 @@
 
         // Lógica da Contagem Regressiva
         const targetDate = new Date("April 14, 2027 00:00:00").getTime();
-
         const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
             const distance = targetDate - now;
@@ -696,7 +761,7 @@
             }
         }, 1000);
 
-        // Smooth scroll behavior
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
