@@ -72,51 +72,6 @@
             animation: floatGently 8s ease-in-out infinite reverse;
         }
 
-        /* ===== ANIMAÇÕES DE DESLIZAMENTO ===== */
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideOutToLeft {
-            from {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-        }
-
-        @keyframes slideInFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideOutToRight {
-            from {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -345,8 +300,7 @@
         .timeline-card-image {
             position: relative;
             flex: 0 0 35%;
-            width: 100%;
-            height: 300px;
+            min-height: 300px;
             border-radius: 8px;
             overflow: hidden;
             background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
@@ -359,36 +313,13 @@
 
         .timeline-card-image img {
             display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            animation-duration: 0.5s;
-            animation-timing-function: ease-in-out;
+            transition: transform 0.3s ease;
         }
 
-        .timeline-card-image img.active { 
-            display: block;
-        }
-
-        /* Classes para animações de entrada/saída */
-        .timeline-card-image img.slide-in-right {
-            animation: slideInFromRight 0.5s ease-in-out forwards;
-        }
-
-        .timeline-card-image img.slide-out-left {
-            animation: slideOutToLeft 0.5s ease-in-out forwards;
-        }
-
-        .timeline-card-image img.slide-in-left {
-            animation: slideInFromLeft 0.5s ease-in-out forwards;
-        }
-
-        .timeline-card-image img.slide-out-right {
-            animation: slideOutToRight 0.5s ease-in-out forwards;
-        }
+        .timeline-card-image img.active { display: block; }
 
         .slider-arrow {
             position: absolute;
@@ -1070,55 +1001,14 @@
             if (isPlaying) audio.play();
         }
 
-        // ===== FUNÇÃO MELHORADA: moveSlide COM ANIMAÇÕES DESLIZANTES =====
         function moveSlide(sliderId, direction) {
             const slider = document.getElementById(sliderId);
             const imgs = slider.getElementsByTagName('img');
-            
             if (imgs.length <= 1) return;
-            
-            // Encontra a imagem ativa
             let activeIdx = Array.from(imgs).findIndex(img => img.classList.contains('active'));
-            const currentImg = imgs[activeIdx];
-            
-            // Remove classe active
-            currentImg.classList.remove('active');
-            
-            // Adiciona animação de saída baseada na direção
-            if (direction === 1) {
-                // Próxima imagem (seta direita) - imagem sai para esquerda
-                currentImg.classList.add('slide-out-left');
-            } else {
-                // Imagem anterior (seta esquerda) - imagem sai para direita
-                currentImg.classList.add('slide-out-right');
-            }
-            
-            // Calcula o índice da próxima imagem
+            imgs[activeIdx].classList.remove('active');
             let nextIdx = (activeIdx + direction + imgs.length) % imgs.length;
-            const nextImg = imgs[nextIdx];
-            
-            // Aguarda um pouco antes de mostrar a próxima imagem
-            setTimeout(() => {
-                // Remove animações de saída
-                currentImg.classList.remove('slide-out-left', 'slide-out-right');
-                
-                // Adiciona classe active à próxima imagem
-                nextImg.classList.add('active');
-                
-                // Adiciona animação de entrada baseada na direção
-                if (direction === 1) {
-                    // Próxima imagem (seta direita) - nova imagem entra pela direita
-                    nextImg.classList.add('slide-in-right');
-                } else {
-                    // Imagem anterior (seta esquerda) - nova imagem entra pela esquerda
-                    nextImg.classList.add('slide-in-left');
-                }
-                
-                // Remove as classes de animação após a animação terminar
-                setTimeout(() => {
-                    nextImg.classList.remove('slide-in-right', 'slide-in-left');
-                }, 500);
-            }, 50);
+            imgs[nextIdx].classList.add('active');
         }
 
         // Contador Regressivo
