@@ -221,7 +221,7 @@
             animation: fadeInUp 1.2s ease-out;
         }
 
-        /* Player de Música Flutuante - LADO ESQUERDO */
+        /* ===== PLAYER DISCRETO COM OPACITY ===== */
         .music-player-container {
             position: fixed;
             bottom: 30px;
@@ -231,6 +231,12 @@
             align-items: flex-start;
             z-index: 1000;
             gap: 12px;
+            opacity: 0.6;
+            transition: opacity 0.4s ease;
+        }
+
+        .music-player-container:hover {
+            opacity: 1;
         }
 
         .song-info {
@@ -304,6 +310,28 @@
             max-width: 1000px;
             margin: 0 auto;
             animation: fadeInUp 0.8s ease-out;
+            position: relative;
+        }
+
+        /* ===== LINHA DE TIMELINE PONTILHADA ===== */
+        section::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-image: repeating-linear-gradient(
+                to bottom,
+                var(--color-terracotta),
+                var(--color-terracotta) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            opacity: 0.3;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         /* Timeline Slider Styles */
@@ -313,16 +341,19 @@
             align-items: center;
             gap: 40px;
             animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         .timeline-card.image-left { flex-direction: row; }
         .timeline-card.image-right { flex-direction: row-reverse; }
 
+        /* ===== MOLDURAS ORGÂNICAS COM BORDER-RADIUS ASSIMÉTRICO ===== */
         .timeline-card-image {
             position: relative;
             flex: 0 0 35%;
             min-height: 300px;
-            border-radius: 8px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             overflow: hidden;
             background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
             border: 2px solid var(--color-terracotta);
@@ -332,12 +363,14 @@
             justify-content: center;
         }
 
+        /* ===== FILTROS SUTIS NAS IMAGENS ===== */
         .timeline-card-image img {
             display: none;
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
+            filter: sepia(10%) contrast(95%);
         }
 
         .timeline-card-image img.active { display: block; }
@@ -397,6 +430,8 @@
             margin: 60px 0;
             text-align: center;
             box-shadow: 0 10px 30px rgba(201, 168, 118, 0.15);
+            position: relative;
+            z-index: 1;
         }
 
         .highlight-section h4 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--color-moss-green); }
@@ -420,6 +455,8 @@
             margin: 80px 0;
             text-align: center;
             animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         .envelopes-title {
@@ -496,6 +533,7 @@
             z-index: 1;
         }
 
+        /* ===== TEXTURA DE PAPEL ARTESANAL NOS ENVELOPES ===== */
         .envelope-body::after {
             content: "";
             position: absolute;
@@ -504,7 +542,9 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, rgba(232, 213, 208, 0.3), rgba(245, 230, 211, 0.2));
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
             z-index: 2;
+            pointer-events: none;
         }
 
         .envelope:hover .envelope-body::before {
@@ -571,6 +611,7 @@
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.8s ease-out;
+            z-index: 1;
         }
 
         .next-hymn-section::before {
@@ -653,11 +694,13 @@
             font-weight: 600;
         }
 
-        /* ===== NOVO: SEÇÃO DE ÁLBUM DE FOTOS ===== */
+        /* ===== SEÇÃO: ÁLBUM DE FOTOS ===== */
         .album-section {
             margin: 80px 0;
             text-align: center;
             animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         .album-message {
@@ -777,6 +820,8 @@
             border-radius: 15px;
             border: 1px solid var(--color-terracotta);
             max-width: 800px;
+            position: relative;
+            z-index: 1;
         }
 
         .countdown-title {
@@ -816,7 +861,13 @@
             letter-spacing: 1px;
         }
 
-        footer { padding: 80px 20px; text-align: center; border-top: 2px solid var(--color-terracotta); }
+        footer { 
+            padding: 80px 20px; 
+            text-align: center; 
+            border-top: 2px solid var(--color-terracotta);
+            position: relative;
+            z-index: 1;
+        }
 
         /* Modal para Envelopes */
         .modal {
@@ -888,6 +939,7 @@
             .photo-frame { border: 10px solid var(--color-beige-warm); }
             .frame-icon { font-size: 2.8rem; }
             .frame-text { font-size: 1.2rem; }
+            section::before { display: none; }
         }
 
         @media (max-width: 480px) {
@@ -1085,7 +1137,7 @@
             <p class="album-message">Enquanto esperamos, construímos e registramos</p>
             
             <div class="album-button-wrapper">
-                <a href="https://photos.app.goo.gl/W8VJVmuQFEUKMsQj7" target="_blank" class="album-button">
+                <a href="COLOQUE_AQUI_O_LINK_DO_ALBUM_GOOGLE_FOTOS" target="_blank" class="album-button">
                     <div class="photo-frame">
                         <div class="frame-content">
                             <div class="frame-icon">📸</div>
