@@ -74,6 +74,19 @@
             animation: floatGently 8s ease-in-out infinite reverse;
         }
 
+        /* ===== NOVOS DECORATIVOS: ÓRGÃO E VIOLÃO - CANTO SUPERIOR ESQUERDO ===== */
+        .corner-instruments {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            width: 160px;
+            height: 160px;
+            opacity: 0.14;
+            z-index: -1;
+            pointer-events: none;
+            animation: floatGently 7s ease-in-out infinite;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -315,13 +328,11 @@
             position: relative;
         }
 
-        /* ===== LINHA DE TIMELINE AJUSTADA PARA TERMINAR EM 25 DE MAIO ===== */
-        section::before {
-            content: "";
+        /* ===== LINHA DE TIMELINE: controlada via JS para terminar no card 25 de Maio ===== */
+        .timeline-line {
             position: absolute;
             left: 50%;
             top: 0;
-            height: 75%;
             width: 1px;
             background-image: repeating-linear-gradient(
                 to bottom,
@@ -939,7 +950,9 @@
             .photo-frame { border: 10px solid var(--color-beige-warm); }
             .frame-icon { font-size: 2.8rem; }
             .frame-text { font-size: 1.2rem; }
-            section::before { display: none; }
+            .timeline-line { display: none; }
+            .corner-instruments { display: none; }
+            .corner-instruments img { display: none; }
         }
 
         @media (max-width: 480px) {
@@ -966,6 +979,9 @@
     <!-- Notas Musicais - AGORA NA ESQUERDA INFERIOR -->
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="decorative-corner corner-bottom-right" alt="decorative ornament">
 
+    <!-- ===== NOVO DECORATIVO: ÓRGÃO + VIOLÃO - CANTO SUPERIOR ESQUERDO ===== -->
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/bGwfByAmFpDaTAer.png" class="decorative-corner corner-instruments" alt="decorative instruments">
+
     <audio id="musicaTema" loop preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
@@ -986,7 +1002,10 @@
         <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-musical-notes-divider-Rr8n2gLwKfew28VKY2ejcX.webp" class="sheet-music-decoration" alt="musical notes divider">
     </header>
 
-    <section>
+    <section id="main-section">
+        <!-- Linha tracejada da timeline: inserida como elemento filho para controle preciso via JS -->
+        <div class="timeline-line" id="timeline-line"></div>
+
         <div class="timeline-card image-left">
             <div class="timeline-card-image" id="slider-12-jan">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-12-jan', -1)">❮</button>
@@ -1049,14 +1068,14 @@
             </div>
         </div>
 
-        <div class="timeline-card image-left">
+        <div class="timeline-card image-left" id="card-25-mai">
             <div class="timeline-card-image" id="slider-25-mai">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-25-mai', -1)">❮</button>
                 <img src="aliança.jpeg" class="active" alt="Aliança pronta">
                 <img src="25 maio.jpeg" alt="Pedido feito">
                 <button class="slider-arrow arrow-right" onclick="moveSlide('slider-25-mai', 1)">❯</button>
             </div>
-            <div class="timeline-card-content">
+            <div class="timeline-card-content" id="content-25-mai">
                 <h3>25 de Maio</h3>
                 <p>Dentro daquele carro, o pedido oficial de namoro. O início oficial do nosso "nós".</p>
             </div>
@@ -1131,7 +1150,7 @@
             </div>
 
             <p class="next-hymn-text">
-                Esta trilha sonora ainda não tem <strong>letra</strong>, <strong>melodia</strong> ou <strong>arranjos</strong>...
+                Esta trilha sonora ainda não tem <strong>letra</strong>, <strong>melodia</strong> ou <strong>nome</strong>...
                 <br><br>
                 porque ela será escrita por nós dois, a partir do momento que você disser <strong>sim</strong>.
             </p>
@@ -1293,6 +1312,36 @@
                 if (target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
+
+        // ===== AJUSTE DINÂMICO DA LINHA TRACEJADA DA TIMELINE =====
+        // A linha deve terminar exatamente no topo da caixa de texto do card "25 de Maio"
+        function adjustTimelineLine() {
+            const section = document.getElementById('main-section');
+            const targetContent = document.getElementById('content-25-mai');
+            const timelineLine = document.getElementById('timeline-line');
+
+            if (!section || !targetContent || !timelineLine) return;
+
+            const sectionRect = section.getBoundingClientRect();
+            const contentRect = targetContent.getBoundingClientRect();
+
+            // Posição do topo da seção em relação ao documento
+            const sectionTop = sectionRect.top + window.scrollY;
+            // Posição do topo da caixa de texto do card 25 de maio em relação ao documento
+            const contentTop = contentRect.top + window.scrollY;
+
+            // Altura da linha = distância do topo da section até o topo da caixa de texto
+            const lineHeight = contentTop - sectionTop;
+
+            timelineLine.style.height = Math.max(0, lineHeight) + 'px';
+        }
+
+        // Ajusta no carregamento e no redimensionamento
+        window.addEventListener('load', adjustTimelineLine);
+        window.addEventListener('resize', adjustTimelineLine);
+        // Também ajusta após um pequeno delay para garantir que o layout esteja completo
+        setTimeout(adjustTimelineLine, 300);
+        setTimeout(adjustTimelineLine, 800);
     </script>
 </body>
 </html>
