@@ -48,7 +48,7 @@
             z-index: -2;
         }
 
-        /* Decorative Elements */
+        /* Decorative Elements - REPOSITIONADOS */
         .decorative-corner {
             position: fixed;
             opacity: 0.15;
@@ -56,17 +56,19 @@
             pointer-events: none;
         }
 
+        /* Cachorro Pinscher - MOVIDO PARA DIREITA */
         .corner-top-left {
             top: 20px;
-            left: 20px;
+            right: 20px;
             width: 150px;
             height: 150px;
             animation: floatGently 6s ease-in-out infinite;
         }
 
+        /* Notas Musicais - MOVIDO PARA ESQUERDA INFERIOR */
         .corner-bottom-right {
             bottom: 40px;
-            right: 20px;
+            left: 20px;
             width: 180px;
             height: 180px;
             animation: floatGently 8s ease-in-out infinite reverse;
@@ -221,14 +223,14 @@
             animation: fadeInUp 1.2s ease-out;
         }
 
-        /* ===== PLAYER DISCRETO COM OPACITY ===== */
+        /* ===== PLAYER MOVIDO PARA CANTO INFERIOR DIREITO ===== */
         .music-player-container {
             position: fixed;
             bottom: 30px;
-            left: 30px;
+            right: 30px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: flex-end;
             z-index: 1000;
             gap: 12px;
             opacity: 0.6;
@@ -313,13 +315,13 @@
             position: relative;
         }
 
-        /* ===== LINHA DE TIMELINE PONTILHADA ===== */
+        /* ===== LINHA DE TIMELINE AJUSTADA PARA TERMINAR EM 25 DE MAIO ===== */
         section::before {
             content: "";
             position: absolute;
             left: 50%;
             top: 0;
-            bottom: 0;
+            height: 75%;
             width: 1px;
             background-image: repeating-linear-gradient(
                 to bottom,
@@ -348,12 +350,12 @@
         .timeline-card.image-left { flex-direction: row; }
         .timeline-card.image-right { flex-direction: row-reverse; }
 
-        /* ===== MOLDURAS ORGÂNICAS COM BORDER-RADIUS ASSIMÉTRICO ===== */
+        /* ===== MOLDURAS RETANGULARES (SEM FORMATAÇÃO ORGÂNICA) ===== */
         .timeline-card-image {
             position: relative;
             flex: 0 0 35%;
-            min-height: 300px;
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            height: 300px;
+            border-radius: 8px;
             overflow: hidden;
             background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
             border: 2px solid var(--color-terracotta);
@@ -363,7 +365,6 @@
             justify-content: center;
         }
 
-        /* ===== FILTROS SUTIS NAS IMAGENS ===== */
         .timeline-card-image img {
             display: none;
             width: 100%;
@@ -533,7 +534,6 @@
             z-index: 1;
         }
 
-        /* ===== TEXTURA DE PAPEL ARTESANAL NOS ENVELOPES ===== */
         .envelope-body::after {
             content: "";
             position: absolute;
@@ -931,7 +931,7 @@
             .envelopes-container { grid-template-columns: 1fr; gap: 30px; }
             .timeline-card { flex-direction: column !important; }
             .timeline-card-image { flex: 0 0 100%; width: 100%; }
-            .music-player-container { bottom: 20px; left: 20px; }
+            .music-player-container { bottom: 20px; right: 20px; align-items: flex-end; }
             .next-hymn-section { padding: 40px 20px; }
             .next-hymn-text { font-size: 1rem; }
             .envelope { height: 280px; }
@@ -959,13 +959,18 @@
 </head>
 <body>
 
+    <!-- DECORATIVOS REPOSICIONADOS -->
+    <!-- Cachorro Pinscher - AGORA NA DIREITA -->
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
+    
+    <!-- Notas Musicais - AGORA NA ESQUERDA INFERIOR -->
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="decorative-corner corner-bottom-right" alt="decorative ornament">
 
     <audio id="musicaTema" loop preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- PLAYER MOVIDO PARA CANTO INFERIOR DIREITO -->
     <div class="music-player-container">
         <div id="song-info" class="song-info">Dias de Luta, Dias de Glória</div>
         <div class="player-controls">
