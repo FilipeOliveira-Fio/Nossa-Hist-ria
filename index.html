@@ -48,7 +48,7 @@
             z-index: -2;
         }
 
-        /* Decorative Elements - REPOSITIONADOS */
+        /* Decorative Elements */
         .decorative-corner {
             position: fixed;
             opacity: 0.15;
@@ -56,134 +56,22 @@
             pointer-events: none;
         }
 
-        /* Cachorro Pinscher - MOVIDO PARA DIREITA */
-        .corner-top-left {
-            top: 20px;
-            right: 20px;
-            width: 150px;
-            height: 150px;
-            animation: floatGently 6s ease-in-out infinite;
-        }
-
-        /* Notas Musicais - MOVIDO PARA ESQUERDA INFERIOR */
-        .corner-bottom-right {
-            bottom: 40px;
-            left: 20px;
-            width: 180px;
-            height: 180px;
-            animation: floatGently 8s ease-in-out infinite reverse;
-        }
-
-        /* ===== NOVOS DECORATIVOS: ÓRGÃO E VIOLÃO - CANTO SUPERIOR ESQUERDO ===== */
-        .corner-instruments {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            width: 160px;
-            height: 160px;
-            opacity: 0.14;
-            z-index: -1;
-            pointer-events: none;
-            animation: floatGently 7s ease-in-out infinite;
-        }
+        .corner-top-left { top: 20px; right: 20px; width: 150px; height: 150px; animation: floatGently 6s ease-in-out infinite; }
+        .corner-bottom-right { bottom: 100px; left: 20px; width: 180px; height: 180px; animation: floatGently 8s ease-in-out infinite reverse; }
+        .corner-instruments { position: fixed; top: 15px; left: 15px; width: 160px; height: 160px; opacity: 0.14; z-index: -1; pointer-events: none; animation: floatGently 7s ease-in-out infinite; }
 
         /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatGently { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes softPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+        @keyframes musicPlaying { 0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 118, 0.7), 0 0 0 0 rgba(139, 157, 131, 0.5); } 50% { box-shadow: 0 0 0 10px rgba(201, 168, 118, 0), 0 0 0 20px rgba(139, 157, 131, 0); } }
+        @keyframes envelopeFloat { 0%, 100% { transform: translateY(0px) rotateZ(0deg); } 50% { transform: translateY(-15px) rotateZ(2deg); } }
+        @keyframes envelopeHover { 0% { transform: translateY(-15px) rotateZ(2deg) scale(1); } 50% { transform: translateY(-25px) rotateZ(3deg) scale(1.05); } 100% { transform: translateY(-15px) rotateZ(2deg) scale(1); } }
+        @keyframes noteFloat { 0%, 100% { opacity: 0.3; transform: translateY(0px) translateX(0px); } 50% { opacity: 0.6; transform: translateY(-20px) translateX(10px); } }
+        @keyframes photoFrameFloat { 0%, 100% { transform: translateY(0px) rotateZ(-3deg); } 50% { transform: translateY(-12px) rotateZ(-3deg); } }
+        @keyframes photoFrameHover { 0% { transform: translateY(-12px) rotateZ(-3deg) scale(1); } 50% { transform: translateY(-20px) rotateZ(0deg) scale(1.08); } 100% { transform: translateY(-12px) rotateZ(-3deg) scale(1); } }
 
-        @keyframes floatGently {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes softPulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes musicPlaying {
-            0%, 100% {
-                box-shadow: 
-                    0 0 0 0 rgba(201, 168, 118, 0.7),
-                    0 0 0 0 rgba(139, 157, 131, 0.5);
-            }
-            50% {
-                box-shadow: 
-                    0 0 0 10px rgba(201, 168, 118, 0),
-                    0 0 0 20px rgba(139, 157, 131, 0);
-            }
-        }
-
-        @keyframes envelopeFloat {
-            0%, 100% {
-                transform: translateY(0px) rotateZ(0deg);
-            }
-            50% {
-                transform: translateY(-15px) rotateZ(2deg);
-            }
-        }
-
-        @keyframes envelopeHover {
-            0% {
-                transform: translateY(-15px) rotateZ(2deg) scale(1);
-            }
-            50% {
-                transform: translateY(-25px) rotateZ(3deg) scale(1.05);
-            }
-            100% {
-                transform: translateY(-15px) rotateZ(2deg) scale(1);
-            }
-        }
-
-        @keyframes noteFloat {
-            0%, 100% {
-                opacity: 0.3;
-                transform: translateY(0px) translateX(0px);
-            }
-            50% {
-                opacity: 0.6;
-                transform: translateY(-20px) translateX(10px);
-            }
-        }
-
-        @keyframes photoFrameFloat {
-            0%, 100% {
-                transform: translateY(0px) rotateZ(-3deg);
-            }
-            50% {
-                transform: translateY(-12px) rotateZ(-3deg);
-            }
-        }
-
-        @keyframes photoFrameHover {
-            0% {
-                transform: translateY(-12px) rotateZ(-3deg) scale(1);
-            }
-            50% {
-                transform: translateY(-20px) rotateZ(0deg) scale(1.08);
-            }
-            100% {
-                transform: translateY(-12px) rotateZ(-3deg) scale(1);
-            }
-        }
-
-        /* Header Section */
+        /* Capa (Início) */
         header {
             min-height: 100vh;
             display: flex;
@@ -200,10 +88,7 @@
         header::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-romantic-header-bg-64AT24ucETWGVbnGvxAjYD.webp');
             background-size: cover;
             background-position: center;
@@ -211,35 +96,63 @@
             z-index: 0;
         }
 
-        header > * {
-            position: relative;
-            z-index: 1;
+        header > * { position: relative; z-index: 1; }
+        h1 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 4rem; color: var(--color-moss-green); margin-bottom: 15px; letter-spacing: 2px; animation: fadeInUp 1s ease-out; }
+        .subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--color-terracotta); font-size: 1.5rem; margin-bottom: 30px; letter-spacing: 1px; animation: fadeInUp 1.2s ease-out; }
+
+        /* Cabeçalho Fixo */
+        .fixed-header {
+            position: fixed;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255, 248, 240, 0.92) 0%, rgba(255, 251, 247, 0.92) 50%, rgba(245, 230, 211, 0.92) 100%);
+            background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-romantic-header-bg-64AT24ucETWGVbnGvxAjYD.webp'), linear-gradient(135deg, rgba(255, 248, 240, 0.92) 0%, rgba(255, 251, 247, 0.92) 50%, rgba(245, 230, 211, 0.92) 100%);
+            background-size: cover, cover;
+            background-position: center, center;
+            background-blend-mode: overlay;
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            z-index: 1100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: top 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid var(--color-terracotta);
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 4rem;
-            color: var(--color-moss-green);
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            animation: fadeInUp 1s ease-out;
+        .fixed-header.visible { top: 0; }
+        .fixed-header h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-moss-green); margin: 0; }
+        .fixed-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--color-terracotta); margin: 0; }
+
+        /* Rodapé Fixo */
+        .fixed-footer {
+            position: fixed;
+            bottom: -200px;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            z-index: 1100;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.05);
+            transition: bottom 0.4s ease;
+            text-align: center;
+            border-top: 1px solid var(--color-terracotta);
         }
 
-        .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            color: var(--color-terracotta);
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            animation: fadeInUp 1.2s ease-out;
-        }
+        .fixed-footer.visible { bottom: 0; }
+        .fixed-footer .cities { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 5px; }
+        .fixed-footer .countdown-mini { display: flex; justify-content: center; gap: 15px; margin-top: 5px; }
+        .fixed-footer .countdown-unit { display: flex; flex-direction: column; min-width: 40px; }
+        .fixed-footer .unit-val { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--color-terracotta); font-size: 1.2rem; }
+        .fixed-footer .unit-label { font-size: 0.6rem; text-transform: uppercase; color: var(--color-text-light); }
 
-        /* ===== PLAYER MOVIDO PARA CANTO INFERIOR DIREITO ===== */
+        /* Miniplayer */
         .music-player-container {
             position: fixed;
-            bottom: 30px;
+            bottom: 100px; /* Ajustado para não sobrepor o rodapé fixo */
             right: 30px;
             display: flex;
             flex-direction: column;
@@ -247,746 +160,133 @@
             z-index: 1000;
             gap: 12px;
             opacity: 0.6;
-            transition: opacity 0.4s ease;
+            transition: all 0.4s ease;
         }
-
-        .music-player-container:hover {
-            opacity: 1;
-        }
-
-        .song-info {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 0.95rem;
-            color: var(--color-moss-green);
-            background: rgba(255, 248, 240, 0.85);
-            padding: 4px 15px;
-            border-radius: 20px;
-            border: 1px solid var(--color-beige-warm);
-            backdrop-filter: blur(5px);
-            white-space: nowrap;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 248, 240, 0.9);
-            padding: 8px 18px;
-            border-radius: 50px;
-            border: 1px solid var(--color-terracotta);
-            box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2);
-        }
-
-        .nav-btn {
-            background: none;
-            border: none;
-            color: var(--color-terracotta);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-        }
-
-        .nav-btn:hover {
-            color: var(--color-moss-green);
-            transform: scale(1.1);
-        }
-
-        #floating-play {
-            background: linear-gradient(135deg, var(--color-terracotta), var(--color-moss-green));
-            color: var(--color-cream);
-            border: 2px solid rgba(255, 248, 240, 0.5);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.4rem;
-            transition: all 0.3s ease;
-            animation: softPulse 3s ease-in-out infinite;
-        }
-
-        #floating-play.playing {
-            animation: musicPlaying 1.5s ease-in-out infinite;
-        }
+        .music-player-container:hover { opacity: 1; }
+        .song-info { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--color-moss-green); background: rgba(255, 248, 240, 0.85); padding: 4px 15px; border-radius: 20px; border: 1px solid var(--color-beige-warm); backdrop-filter: blur(5px); white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .player-controls { display: flex; align-items: center; gap: 10px; background: rgba(255, 248, 240, 0.9); padding: 8px 18px; border-radius: 50px; border: 1px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); }
+        .nav-btn { background: none; border: none; color: var(--color-terracotta); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+        #floating-play { background: linear-gradient(135deg, var(--color-terracotta), var(--color-moss-green)); color: var(--color-cream); border: 2px solid rgba(255, 248, 240, 0.5); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.4rem; transition: all 0.3s ease; animation: softPulse 3s ease-in-out infinite; }
+        #floating-play.playing { animation: musicPlaying 1.5s ease-in-out infinite; }
 
         /* Main Content */
-        section {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-        }
+        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; animation: fadeInUp 0.8s ease-out; position: relative; }
+        .timeline-line { position: absolute; left: 50%; top: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, var(--color-terracotta), var(--color-terracotta) 10px, transparent 10px, transparent 20px); opacity: 0.3; transform: translateX(-50%); pointer-events: none; z-index: 0; }
 
-        /* ===== LINHA DE TIMELINE: controlada via JS para terminar no card 25 de Maio ===== */
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            width: 1px;
-            background-image: repeating-linear-gradient(
-                to bottom,
-                var(--color-terracotta),
-                var(--color-terracotta) 10px,
-                transparent 10px,
-                transparent 20px
-            );
-            opacity: 0.3;
-            transform: translateX(-50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Timeline Slider Styles */
-        .timeline-card {
-            margin-bottom: 80px;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-            z-index: 1;
-        }
-
+        /* Timeline Cards */
+        .timeline-card { margin-bottom: 80px; display: flex; align-items: center; gap: 40px; position: relative; z-index: 1; }
         .timeline-card.image-left { flex-direction: row; }
         .timeline-card.image-right { flex-direction: row-reverse; }
-
-        /* ===== MOLDURAS RETANGULARES (SEM FORMATAÇÃO ORGÂNICA) ===== */
-        .timeline-card-image {
-            position: relative;
-            flex: 0 0 35%;
-            height: 300px;
-            border-radius: 8px;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
-            border: 2px solid var(--color-terracotta);
-            box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .timeline-card-image img {
-            display: none;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            filter: sepia(10%) contrast(95%);
-        }
-
+        .timeline-card-image { position: relative; flex: 0 0 35%; height: 300px; border-radius: 8px; overflow: hidden; background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6)); border: 2px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); display: flex; align-items: center; justify-content: center; }
+        .timeline-card-image img { display: none; width: 100%; height: 100%; object-fit: cover; filter: sepia(10%) contrast(95%); }
         .timeline-card-image img.active { display: block; }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--color-moss-green);
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 2;
-            font-size: 2rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-            user-select: none;
-        }
-
+        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.2); color: var(--color-moss-green); border: none; padding: 10px; cursor: pointer; z-index: 2; font-size: 2rem; opacity: 0; transition: opacity 0.3s; }
         .timeline-card-image:hover .slider-arrow { opacity: 1; }
         .arrow-left { left: 0; border-radius: 0 5px 5px 0; }
         .arrow-right { right: 0; border-radius: 5px 0 0 5px; }
-
-        .timeline-card-content {
-            flex: 1;
-            padding: 30px;
-            border-radius: 8px;
-            background: rgba(255, 248, 240, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(201, 168, 118, 0.2);
-            text-align: left;
-        }
-
-        .timeline-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--color-moss-green);
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--color-terracotta);
-            display: inline-block;
-        }
-
-        .timeline-card p {
-            color: var(--color-text-light);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            font-style: italic;
-        }
+        .timeline-card-content { flex: 1; padding: 30px; border-radius: 8px; background: rgba(255, 248, 240, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(201, 168, 118, 0.2); }
+        .timeline-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--color-moss-green); margin-bottom: 15px; border-bottom: 2px solid var(--color-terracotta); display: inline-block; }
+        .timeline-card p { color: var(--color-text-light); font-size: 1.1rem; line-height: 1.8; font-style: italic; }
 
         /* Highlight Section */
-        .highlight-section {
-            background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
-            padding: 40px;
-            border-radius: 8px;
-            border: 2px solid var(--color-terracotta);
-            margin: 60px 0;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(201, 168, 118, 0.15);
-            position: relative;
-            z-index: 1;
-        }
-
+        .highlight-section { background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6)); padding: 40px; border-radius: 8px; border: 2px solid var(--color-terracotta); margin: 60px 0; text-align: center; box-shadow: 0 10px 30px rgba(201, 168, 118, 0.15); position: relative; z-index: 1; }
         .highlight-section h4 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--color-moss-green); }
+        .map-btn { display: inline-block; margin-top: 15px; padding: 10px 20px; color: var(--color-terracotta); text-decoration: none; border: 1px solid var(--color-terracotta); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-weight: 600; cursor: pointer; background: none; }
 
-        .map-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            color: var(--color-terracotta);
-            text-decoration: none;
-            border: 1px solid var(--color-terracotta);
-            border-radius: 4px;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-        }
-
-        .sheet-music-decoration { display: block; width: 100%; max-width: 400px; margin: 40px auto; opacity: 0.7; }
-
-        /* ===== SEÇÃO: OS ENVELOPES DO AMANHÃ ===== */
-        .envelopes-section {
-            margin: 80px 0;
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-            z-index: 1;
-        }
-
-        .envelopes-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--color-moss-green);
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .envelopes-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            color: var(--color-terracotta);
-            font-size: 1.1rem;
-            margin-bottom: 50px;
-            letter-spacing: 1px;
-        }
-
-        .envelopes-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .envelope {
-            position: relative;
-            width: 100%;
-            max-width: 280px;
-            height: 320px;
-            margin: 0 auto;
-            cursor: pointer;
-            animation: envelopeFloat 4s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2);
-        }
-
-        .envelope:nth-child(2) { animation-delay: 0.3s; }
-        .envelope:nth-child(3) { animation-delay: 0.6s; }
-
-        .envelope:hover {
-            animation: envelopeHover 0.6s ease-in-out;
-            box-shadow: 0 15px 40px rgba(201, 168, 118, 0.3);
-        }
-
-        .envelope-body {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            border: 2px solid var(--color-terracotta);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .envelope-body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(245, 230, 211, 0.5);
-            backdrop-filter: blur(8px);
-            z-index: 1;
-        }
-
-        .envelope-body::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(232, 213, 208, 0.3), rgba(245, 230, 211, 0.2));
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .envelope:hover .envelope-body::before {
-            background: rgba(232, 213, 208, 0.4);
-            backdrop-filter: blur(6px);
-        }
-
-        .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 40%;
-            background: linear-gradient(to bottom, var(--color-terracotta), var(--color-beige-warm));
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            transition: all 0.3s ease;
-            transform-origin: top;
-            z-index: 3;
-            border-bottom: 2px solid var(--color-terracotta);
-        }
-
-        .envelope:hover .envelope-flap {
-            background: linear-gradient(to bottom, var(--color-moss-green), var(--color-terracotta));
-            transform: rotateX(-25deg);
-        }
-
-        .envelope-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 4;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .envelope-label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            color: var(--color-text-dark);
-            font-style: italic;
-            font-weight: 600;
-            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .envelope:hover .envelope-label {
-            color: var(--color-moss-green);
-            transform: scale(1.05);
-        }
-
-        /* ===== SEÇÃO: O PRÓXIMO HINO ===== */
-        .next-hymn-section {
-            background: linear-gradient(135deg, rgba(245, 230, 211, 0.5), rgba(232, 213, 208, 0.3));
+        /* Unificação: Se eu crer + Próximo Hino */
+        .hymns-unified-section {
+            background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
             padding: 60px 40px;
             border-radius: 12px;
-            border: 2px solid var(--color-moss-green);
-            margin: 80px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out;
-            z-index: 1;
-        }
-
-        .next-hymn-section::before {
-            content: "♪ ♫ ♪";
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 2rem;
-            color: var(--color-terracotta);
-            opacity: 0.2;
-        }
-
-        .next-hymn-section::after {
-            content: "♫ ♪ ♫";
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 2rem;
-            color: var(--color-moss-green);
-            opacity: 0.2;
-        }
-
-        .next-hymn-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--color-moss-green);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .musical-staff {
-            width: 100%;
-            max-width: 400px;
-            height: 80px;
-            margin: 30px auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .staff-line {
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, var(--color-terracotta), var(--color-moss-green), var(--color-terracotta));
-            opacity: 0.4;
-        }
-
-        .staff-line:nth-child(1) { top: 10%; }
-        .staff-line:nth-child(2) { top: 30%; }
-        .staff-line:nth-child(3) { top: 50%; }
-        .staff-line:nth-child(4) { top: 70%; }
-        .staff-line:nth-child(5) { bottom: 10%; }
-
-        .floating-note {
-            position: absolute;
-            font-size: 1.5rem;
-            opacity: 0.3;
-            animation: noteFloat 3s ease-in-out infinite;
-        }
-
-        .floating-note:nth-child(6) { left: 10%; top: 20%; animation-delay: 0s; }
-        .floating-note:nth-child(7) { right: 15%; top: 40%; animation-delay: 0.5s; }
-        .floating-note:nth-child(8) { left: 20%; bottom: 20%; animation-delay: 1s; }
-
-        .next-hymn-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            color: var(--color-text-dark);
-            line-height: 2;
-            font-style: italic;
-            margin: 30px 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .next-hymn-text strong {
-            color: var(--color-moss-green);
-            font-weight: 600;
-        }
-
-        /* ===== SEÇÃO: ÁLBUM DE FOTOS ===== */
-        .album-section {
-            margin: 80px 0;
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-            z-index: 1;
-        }
-
-        .album-message {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            color: var(--color-text-light);
-            font-style: italic;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-
-        .album-button-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1000px;
-        }
-
-        .album-button {
-            position: relative;
-            width: 280px;
-            height: 200px;
-            cursor: pointer;
-            text-decoration: none;
-            animation: photoFrameFloat 4s ease-in-out infinite;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .album-button:hover {
-            animation: photoFrameHover 0.6s ease-in-out;
-        }
-
-        /* Moldura de Foto */
-        .photo-frame {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--color-beige-warm), rgba(232, 213, 208, 0.8));
-            border: 12px solid var(--color-beige-warm);
-            border-radius: 4px;
-            box-shadow: 
-                0 15px 40px rgba(201, 168, 118, 0.3),
-                inset 0 0 0 1px rgba(201, 168, 118, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transform: rotateZ(-3deg);
-            transition: all 0.3s ease;
-        }
-
-        .album-button:hover .photo-frame {
-            transform: rotateZ(0deg) scale(1.05);
-            box-shadow: 
-                0 20px 50px rgba(201, 168, 118, 0.4),
-                inset 0 0 0 1px rgba(201, 168, 118, 0.3);
-        }
-
-        /* Conteúdo da Moldura */
-        .frame-content {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(139, 157, 131, 0.1), rgba(201, 168, 118, 0.1));
-            z-index: 2;
-        }
-
-        .frame-icon {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            animation: photoFrameFloat 4s ease-in-out infinite;
-        }
-
-        .frame-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--color-moss-green);
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
-        }
-
-        .frame-subtext {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
-            color: var(--color-terracotta);
-            font-style: italic;
-            margin-top: 8px;
-            letter-spacing: 0.5px;
-        }
-
-        /* Decoração de Polaroid */
-        .polaroid-shadow {
-            position: absolute;
-            bottom: -8px;
-            left: 10%;
-            width: 80%;
-            height: 8px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            filter: blur(4px);
-        }
-
-        /* Contador Regressivo */
-        .countdown-container {
-            margin: 80px auto;
-            text-align: center;
-            padding: 40px;
-            background: rgba(245, 230, 211, 0.3);
-            border-radius: 15px;
-            border: 1px solid var(--color-terracotta);
-            max-width: 800px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .countdown-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--color-moss-green);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 80px;
-        }
-
-        .countdown-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--color-terracotta);
-            font-weight: 700;
-        }
-
-        .countdown-label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
-            color: var(--color-text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        footer { 
-            padding: 80px 20px; 
-            text-align: center; 
-            border-top: 2px solid var(--color-terracotta);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Modal para Envelopes */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            animation: fadeInUp 0.3s ease-out;
-        }
-
-        .modal-content {
-            background-color: var(--color-cream);
-            margin: 10% auto;
-            padding: 40px;
             border: 2px solid var(--color-terracotta);
-            border-radius: 8px;
-            width: 80%;
-            max-width: 500px;
+            margin: 80px 0;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.3s ease-out;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 15px 40px rgba(201, 168, 118, 0.2);
         }
 
-        .modal-content h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--color-moss-green);
-            margin-bottom: 15px;
-        }
+        .hymns-unified-section h4 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--color-moss-green); margin-bottom: 20px; }
+        .hymns-unified-section .musical-staff { width: 100%; max-width: 400px; height: 60px; margin: 20px auto; position: relative; }
+        .hymns-unified-section .staff-line { position: absolute; width: 100%; height: 1px; background: var(--color-terracotta); opacity: 0.3; }
+        .hymns-unified-section .staff-line:nth-child(1) { top: 20%; }
+        .hymns-unified-section .staff-line:nth-child(2) { top: 40%; }
+        .hymns-unified-section .staff-line:nth-child(3) { top: 60%; }
+        .hymns-unified-section .staff-line:nth-child(4) { top: 80%; }
+        .hymns-unified-section .staff-line:nth-child(5) { top: 100%; }
 
-        .modal-content p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: var(--color-text-light);
-            line-height: 1.8;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
+        /* Envelopes + Álbum Integrado */
+        .envelopes-section { margin: 80px 0; text-align: center; position: relative; z-index: 1; }
+        .envelopes-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--color-moss-green); margin-bottom: 15px; letter-spacing: 2px; }
+        .envelopes-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--color-terracotta); font-size: 1.1rem; margin-bottom: 50px; }
+        .envelopes-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 60px; }
+        .envelope { position: relative; width: 100%; max-width: 280px; height: 320px; margin: 0 auto; cursor: pointer; animation: envelopeFloat 4s ease-in-out infinite; transition: all 0.3s ease; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); }
+        .envelope-body { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; border: 2px solid var(--color-terracotta); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .envelope-body::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(245, 230, 211, 0.5); backdrop-filter: blur(8px); z-index: 1; }
+        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(to bottom, var(--color-terracotta), var(--color-beige-warm)); clip-path: polygon(0 0, 100% 0, 50% 100%); transition: all 0.3s ease; transform-origin: top; z-index: 3; border-bottom: 2px solid var(--color-terracotta); }
+        .envelope:hover .envelope-flap { transform: rotateX(-25deg); }
+        .envelope-label { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--color-text-dark); font-style: italic; font-weight: 600; z-index: 4; }
 
-        .close-btn {
-            color: var(--color-terracotta);
-            float: right;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        /* Álbum Integrado */
+        .album-integrated { margin-top: 60px; border-top: 1px dashed var(--color-terracotta); padding-top: 40px; }
+        .album-button { position: relative; width: 280px; height: 200px; cursor: pointer; text-decoration: none; animation: photoFrameFloat 4s ease-in-out infinite; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+        .photo-frame { position: relative; width: 100%; height: 100%; background: linear-gradient(135deg, var(--color-beige-warm), rgba(232, 213, 208, 0.8)); border: 12px solid var(--color-beige-warm); border-radius: 4px; box-shadow: 0 15px 40px rgba(201, 168, 118, 0.3); display: flex; align-items: center; justify-content: center; overflow: hidden; transform: rotateZ(-3deg); transition: all 0.3s ease; }
+        .album-button:hover .photo-frame { transform: rotateZ(0deg) scale(1.05); }
+        .frame-content { position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(139, 157, 131, 0.05); z-index: 2; }
+        .frame-icon { font-size: 3.5rem; margin-bottom: 10px; }
+        .frame-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-moss-green); font-weight: 600; }
 
-        .close-btn:hover {
-            color: var(--color-moss-green);
-        }
+        /* Modais */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); animation: fadeInUp 0.3s ease-out; }
+        .modal-content { background-color: var(--color-cream); margin: 5% auto; padding: 40px; border: 2px solid var(--color-terracotta); border-radius: 8px; width: 90%; max-width: 600px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); position: relative; }
+        .close-btn { color: var(--color-terracotta); position: absolute; right: 20px; top: 10px; font-size: 2.5rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
+        .close-btn:hover { color: var(--color-moss-green); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; border: 1px solid var(--color-beige-warm); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        footer { padding: 120px 20px 180px; text-align: center; border-top: 2px solid var(--color-terracotta); position: relative; z-index: 1; }
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .envelopes-title { font-size: 1.8rem; }
-            .envelopes-container { grid-template-columns: 1fr; gap: 30px; }
             .timeline-card { flex-direction: column !important; }
             .timeline-card-image { flex: 0 0 100%; width: 100%; }
-            .music-player-container { bottom: 20px; right: 20px; align-items: flex-end; }
-            .next-hymn-section { padding: 40px 20px; }
-            .next-hymn-text { font-size: 1rem; }
-            .envelope { height: 280px; }
-            .album-button { width: 240px; height: 170px; }
-            .photo-frame { border: 10px solid var(--color-beige-warm); }
-            .frame-icon { font-size: 2.8rem; }
-            .frame-text { font-size: 1.2rem; }
-            .timeline-line { display: none; }
-            .corner-instruments { display: none; }
-            .corner-instruments img { display: none; }
-        }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
-            .envelopes-title { font-size: 1.5rem; }
-            .envelope { height: 240px; max-width: 100%; }
-            .envelope-label { font-size: 1rem; }
-            .next-hymn-title { font-size: 1.5rem; }
-            .countdown-number { font-size: 1.8rem; }
-            .album-button { width: 200px; height: 140px; }
-            .photo-frame { border: 8px solid var(--color-beige-warm); }
-            .frame-icon { font-size: 2.2rem; }
-            .frame-text { font-size: 1rem; }
-            .album-message { font-size: 1.1rem; }
+            .music-player-container { bottom: 120px; right: 20px; }
+            .timeline-line, .corner-instruments, .decorative-corner { display: none; }
+            .fixed-header h2 { font-size: 1.1rem; }
+            .fixed-header p { font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- DECORATIVOS REPOSICIONADOS -->
-    <!-- Cachorro Pinscher - AGORA NA DIREITA -->
-    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
-    
-    <!-- Notas Musicais - AGORA NA ESQUERDA INFERIOR -->
-    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="decorative-corner corner-bottom-right" alt="decorative ornament">
+    <!-- Cabeçalho Fixo -->
+    <div id="fixed-header" class="fixed-header">
+        <h2>Carol & Filipe</h2>
+        <p>Minha gata, morada dos meus sonhos</p>
+    </div>
 
-    <!-- ===== NOVO DECORATIVO: ÓRGÃO + VIOLÃO - CANTO SUPERIOR ESQUERDO ===== -->
+    <!-- Rodapé Fixo -->
+    <div id="fixed-footer" class="fixed-footer">
+        <div class="cities">CONTAGEM • SABARÁ • BH</div>
+        <div id="footer-countdown" class="countdown-mini">
+            <div class="countdown-unit"><span class="unit-val" id="f-days">00</span><span class="unit-label">Dias</span></div>
+            <div class="countdown-unit"><span class="unit-val" id="f-hours">00</span><span class="unit-label">Horas</span></div>
+            <div class="countdown-unit"><span class="unit-val" id="f-minutes">00</span><span class="unit-label">Min</span></div>
+            <div class="countdown-unit"><span class="unit-val" id="f-seconds">00</span><span class="unit-label">Seg</span></div>
+        </div>
+    </div>
+
+    <!-- Decorativos -->
+    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
+    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="decorative-corner corner-bottom-right" alt="decorative ornament">
     <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/bGwfByAmFpDaTAer.png" class="decorative-corner corner-instruments" alt="decorative instruments">
 
-    <audio id="musicaTema" loop preload="auto">
+    <audio id="musicaTema" preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- PLAYER MOVIDO PARA CANTO INFERIOR DIREITO -->
     <div class="music-player-container">
         <div id="song-info" class="song-info">Dias de Luta, Dias de Glória</div>
         <div class="player-controls">
@@ -996,16 +296,16 @@
         </div>
     </div>
 
-    <header>
+    <header id="page-capa">
         <h1>Carol & Filipe</h1>
         <p class="subtitle">A morada dos meus sonhos</p>
-        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-musical-notes-divider-Rr8n2gLwKfew28VKY2ejcX.webp" class="sheet-music-decoration" alt="musical notes divider">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-musical-notes-divider-Rr8n2gLwKfew28VKY2ejcX.webp" style="width:100%; max-width:400px; opacity:0.7;" alt="divider">
     </header>
 
     <section id="main-section">
-        <!-- Linha tracejada da timeline: inserida como elemento filho para controle preciso via JS -->
         <div class="timeline-line" id="timeline-line"></div>
 
+        <!-- Timeline Cards (Preservados) -->
         <div class="timeline-card image-left">
             <div class="timeline-card-image" id="slider-12-jan">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-12-jan', -1)">❮</button>
@@ -1081,187 +381,117 @@
             </div>
         </div>
 
-        <div class="highlight-section double-border">
-            <h4>"Se eu crer"</h4>
-            <p>O primeiro hino que você me enviou. A trilha sonora da nossa fé.</p>
-            <a href="https://maps.app.goo.gl/yuqXwkA7QKck1qtZ9" class="map-btn">Campo Santo Antônio</a>
+        <!-- Adequação 2: Unificação de Hinos -->
+        <div class="hymns-unified-section">
+            <h4>Nossa Trilha Sonora</h4>
+            <div class="musical-staff">
+                <div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div>
+                <span class="floating-note" style="left:10%; top:10%;">♪</span>
+                <span class="floating-note" style="right:15%; top:30%;">♫</span>
+            </div>
+            <p style="font-style: italic; margin-bottom: 20px;">
+                <strong>"Se eu crer"</strong> foi o primeiro hino que você me enviou, marcando o início da nossa fé compartilhada. 
+                Mas nossa história é um hino em construção: virão novos louvores e canções que, assim como as músicas que já ouvimos, 
+                irão eternizar cada passo do nosso "nós".
+            </p>
+            <button class="map-btn" onclick="openVideoModal()">Assistir Momento Especial</button>
         </div>
 
-        <!-- ===== SEÇÃO: OS ENVELOPES DO AMANHÃ ===== -->
+        <!-- Adequação 3: Envelopes + Álbum Integrado -->
         <div class="envelopes-section">
             <h2 class="envelopes-title">Os Envelopes do Amanhã</h2>
-            <p class="envelopes-subtitle">Mistérios guardados para o futuro que construiremos juntos</p>
+            <p class="envelopes-subtitle">Mistérios e momentos que ainda iremos viver e registrar</p>
             
             <div class="envelopes-container">
-                <!-- Carta 1 -->
                 <div class="envelope" onclick="openEnvelopeModal(0)">
                     <div class="envelope-flap"></div>
                     <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=400&fit=crop');">
-                        <div class="envelope-content">
-                            <div class="envelope-label">Primeira Viagem</div>
-                        </div>
+                        <div class="envelope-label">Primeira Viagem</div>
                     </div>
                 </div>
-
-                <!-- Carta 2 -->
                 <div class="envelope" onclick="openEnvelopeModal(1)">
                     <div class="envelope-flap"></div>
                     <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=500&h=400&fit=crop');">
-                        <div class="envelope-content">
-                            <div class="envelope-label">Chave da Nossa Casa</div>
-                        </div>
+                        <div class="envelope-label">Chave da Nossa Casa</div>
                     </div>
                 </div>
-
-                <!-- Carta 3 -->
                 <div class="envelope" onclick="openEnvelopeModal(2)">
                     <div class="envelope-flap"></div>
                     <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&h=400&fit=crop');">
-                        <div class="envelope-content">
-                            <div class="envelope-label">Promessas Eternas</div>
-                        </div>
+                        <div class="envelope-label">Promessas Eternas</div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Modal para Envelopes -->
-        <div id="envelopeModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeEnvelopeModal()">&times;</span>
-                <h3 id="modalTitle">Título</h3>
-                <p id="modalMessage">Mensagem</p>
-            </div>
-        </div>
-
-        <!-- ===== SEÇÃO: O PRÓXIMO HINO ===== -->
-        <div class="next-hymn-section">
-            <h2 class="next-hymn-title">O Próximo Hino</h2>
-            
-            <div class="musical-staff">
-                <div class="staff-line"></div>
-                <div class="staff-line"></div>
-                <div class="staff-line"></div>
-                <div class="staff-line"></div>
-                <div class="staff-line"></div>
-                <span class="floating-note">♪</span>
-                <span class="floating-note">♫</span>
-                <span class="floating-note">♪</span>
-            </div>
-
-            <p class="next-hymn-text">
-                Esta trilha sonora ainda não tem <strong>letra</strong>, <strong>melodia</strong> ou <strong>nome</strong>...
-                <br><br>
-                porque ela será escrita por nós dois, a partir do momento que você disser <strong>sim</strong>.
-            </p>
-        </div>
-
-        <!-- ===== SEÇÃO: ÁLBUM DE FOTOS ===== -->
-        <div class="album-section">
-            <p class="album-message">Enquanto esperamos, construímos e registramos</p>
-            
-            <div class="album-button-wrapper">
+            <div class="album-integrated">
+                <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; margin-bottom: 30px; color: var(--color-text-light);">
+                    Enquanto o futuro é um suspense, vamos apreciar os momentos que já nos trouxeram até aqui.
+                </p>
                 <a href="COLOQUE_AQUI_O_LINK_DO_ALBUM_GOOGLE_FOTOS" target="_blank" class="album-button">
                     <div class="photo-frame">
                         <div class="frame-content">
                             <div class="frame-icon">📸</div>
                             <div class="frame-text">Nosso Álbum</div>
-                            <div class="frame-subtext">Clique para ver</div>
                         </div>
                     </div>
-                    <div class="polaroid-shadow"></div>
                 </a>
-            </div>
-        </div>
-
-        <!-- Contador Regressivo -->
-        <div class="countdown-container">
-            <div class="countdown-title">Faltam para o nosso "SIM"</div>
-            <div class="countdown-timer" id="timer">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label">Dias</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label">Horas</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label">Min</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label">Seg</span>
-                </div>
             </div>
         </div>
     </section>
 
     <footer>
         <p>CONTAGEM • SABARÁ • BH</p>
-        <p>NOSSO "SIM" ESTÁ CHEGANDO: 14 DE ABRIL DE 2027</p>
     </footer>
 
+    <!-- Modais -->
+    <div id="envelopeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeEnvelopeModal()">&times;</span>
+            <h3 id="modalTitle" style="font-family:'Playfair Display'; color:var(--color-moss-green); margin-bottom:15px;">Título</h3>
+            <p id="modalMessage" style="font-family:'Cormorant Garamond'; font-style:italic;">Mensagem</p>
+        </div>
+    </div>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeVideoModal()">&times;</span>
+            <h3 style="font-family:'Playfair Display'; color:var(--color-moss-green);">Nossa História em Vídeo</h3>
+            <div class="video-container">
+                <!-- Substitua o ID do vídeo pelo seu vídeo de escolha -->
+                <iframe id="videoIframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Conteúdo dos Envelopes
-        const envelopeMessages = [
-            {
-                title: "Reservado para a Primeira Viagem",
-                message: "Quando finalmente dissermos 'sim', vamos explorar o mundo juntos. Este envelope guarda o destino que ainda não sabemos, mas que será perfeito porque estaremos lado a lado."
-            },
-            {
-                title: "Para a Chave da Nossa Casa",
-                message: "Um lar não é apenas um lugar, é onde o coração encontra paz. Quando abrirmos aquela porta juntos, saberemos que construímos algo que vai muito além de paredes e telhado."
-            },
-            {
-                title: "Promessas Eternas",
-                message: "Neste envelope estão todas as promessas que faremos um ao outro no altar. Promessas de amor, respeito, cumplicidade e de sempre escolher 'nós' nos momentos difíceis."
-            }
-        ];
-
-        // Função para abrir modal
-        function openEnvelopeModal(index) {
-            const modal = document.getElementById('envelopeModal');
-            document.getElementById('modalTitle').innerText = envelopeMessages[index].title;
-            document.getElementById('modalMessage').innerText = envelopeMessages[index].message;
-            modal.style.display = 'block';
-        }
-
-        // Função para fechar modal
-        function closeEnvelopeModal() {
-            const modal = document.getElementById('envelopeModal');
-            modal.style.display = 'none';
-        }
-
-        // Fechar modal ao clicar fora
-        window.onclick = function(event) {
-            const modal = document.getElementById('envelopeModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // Playlist e Controles de Música
+        // Configurações Iniciais
         const playlist = [
             { title: "Dias de Luta, Dias de Glória", file: "musica.mp3" },
             { title: "Explodir - Anavitória", file: "musica2.mp3" },
             { title: "Leal - Djonga", file: "musica3.mp3" },
             { title: "Cor de Marte - Anavitória", file: "musica4.mp3" }
         ];
+        const envelopeMessages = [
+            { title: "Primeira Viagem", message: "Quando finalmente dissermos 'sim', vamos explorar o mundo juntos. Este envelope guarda o destino que ainda não sabemos, mas que será perfeito porque estaremos lado a lado." },
+            { title: "Chave da Nossa Casa", message: "Um lar não é apenas um lugar, é onde o coração encontra paz. Quando abrirmos aquela porta juntos, saberemos que construímos algo que vai muito além de paredes e telhado." },
+            { title: "Promessas Eternas", message: "Neste envelope estão todas as promessas que faremos um ao outro no altar. Promessas de amor, respeito, cumplicidade e de sempre escolher 'nós'." }
+        ];
 
         let currentTrackIndex = 0;
         const audio = document.getElementById('musicaTema');
         const playButton = document.getElementById('floating-play');
         const songInfo = document.getElementById('song-info');
-        
+        const videoIframe = document.getElementById('videoIframe');
+
+        // Adequação 1: Troca Automática de Música
+        audio.addEventListener('ended', function() {
+            changeTrack(1);
+            audio.play();
+        });
+
         function toggleMusic() {
             if (audio.paused) {
-                const playPromise = audio.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => { playButton.classList.add('playing'); })
-                    .catch(error => { console.error('Erro:', error); });
-                }
+                audio.play().then(() => playButton.classList.add('playing')).catch(e => console.log(e));
             } else {
                 audio.pause();
                 playButton.classList.remove('playing');
@@ -1276,72 +506,92 @@
             if (isPlaying) audio.play();
         }
 
-        // Função moveSlide
+        // Modais
+        function openEnvelopeModal(index) {
+            document.getElementById('modalTitle').innerText = envelopeMessages[index].title;
+            document.getElementById('modalMessage').innerText = envelopeMessages[index].message;
+            document.getElementById('envelopeModal').style.display = 'block';
+        }
+        function closeEnvelopeModal() { document.getElementById('envelopeModal').style.display = 'none'; }
+
+        function openVideoModal() {
+            // Para a música tema ao abrir o vídeo
+            if (!audio.paused) {
+                audio.pause();
+                playButton.classList.remove('playing');
+            }
+            document.getElementById('videoModal').style.display = 'block';
+        }
+        function closeVideoModal() {
+            document.getElementById('videoModal').style.display = 'none';
+            // Para o vídeo ao fechar o modal
+            const iframeSrc = videoIframe.src;
+            videoIframe.src = iframeSrc;
+        }
+
+        window.onclick = function(e) {
+            if (e.target.className === 'modal') {
+                closeEnvelopeModal();
+                closeVideoModal();
+            }
+        };
+
+        // Sliders
         function moveSlide(sliderId, direction) {
             const slider = document.getElementById(sliderId);
             const imgs = slider.getElementsByTagName('img');
-            
             if (imgs.length <= 1) return;
-            
             let activeIdx = Array.from(imgs).findIndex(img => img.classList.contains('active'));
-            const currentImg = imgs[activeIdx];
-            
-            currentImg.classList.remove('active');
-            
+            imgs[activeIdx].classList.remove('active');
             let nextIdx = (activeIdx + direction + imgs.length) % imgs.length;
-            const nextImg = imgs[nextIdx];
-            
-            nextImg.classList.add('active');
+            imgs[nextIdx].classList.add('active');
         }
 
-        // Contador Regressivo
+        // Adequação 5: Cabeçalho e Rodapé Fixos + Visibilidade
+        const fixedHeader = document.getElementById('fixed-header');
+        const fixedFooter = document.getElementById('fixed-footer');
+        const capa = document.getElementById('page-capa');
+
+        window.addEventListener('scroll', function() {
+            const capaBottom = capa.getBoundingClientRect().bottom;
+            if (capaBottom < 0) {
+                fixedHeader.classList.add('visible');
+                fixedFooter.classList.add('visible');
+            } else {
+                fixedHeader.classList.remove('visible');
+                fixedFooter.classList.remove('visible');
+            }
+            adjustTimelineLine();
+        });
+
+        // Contador Regressivo (Rodapé)
         const targetDate = new Date("April 14, 2027 00:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
             const dist = targetDate - now;
-            document.getElementById("days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+            const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((dist % (1000 * 60)) / 1000);
+            
+            document.getElementById("f-days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("f-hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("f-minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("f-seconds").innerText = s.toString().padStart(2, '0');
         }, 1000);
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // ===== AJUSTE DINÂMICO DA LINHA TRACEJADA DA TIMELINE =====
-        // A linha deve terminar exatamente no topo da caixa de texto do card "25 de Maio"
+        // Ajuste da Linha da Timeline
         function adjustTimelineLine() {
             const section = document.getElementById('main-section');
             const targetContent = document.getElementById('content-25-mai');
             const timelineLine = document.getElementById('timeline-line');
-
             if (!section || !targetContent || !timelineLine) return;
-
-            const sectionRect = section.getBoundingClientRect();
-            const contentRect = targetContent.getBoundingClientRect();
-
-            // Posição do topo da seção em relação ao documento
-            const sectionTop = sectionRect.top + window.scrollY;
-            // Posição do topo da caixa de texto do card 25 de maio em relação ao documento
-            const contentTop = contentRect.top + window.scrollY;
-
-            // Altura da linha = distância do topo da section até o topo da caixa de texto
-            const lineHeight = contentTop - sectionTop;
-
-            timelineLine.style.height = Math.max(0, lineHeight) + 'px';
+            const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+            const contentTop = targetContent.getBoundingClientRect().top + window.scrollY;
+            timelineLine.style.height = Math.max(0, contentTop - sectionTop) + 'px';
         }
-
-        // Ajusta no carregamento e no redimensionamento
         window.addEventListener('load', adjustTimelineLine);
         window.addEventListener('resize', adjustTimelineLine);
-        // Também ajusta após um pequeno delay para garantir que o layout esteja completo
-        setTimeout(adjustTimelineLine, 300);
-        setTimeout(adjustTimelineLine, 800);
     </script>
 </body>
 </html>
