@@ -56,7 +56,8 @@
             pointer-events: none;
         }
 
-        .corner-top-left { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); width: 150px; height: 150px; animation: floatGently 6s ease-in-out infinite; z-index: 10; }
+        .corner-top-left { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); width: 150px; height: 150px; animation: floatGently 6s ease-in-out infinite; z-index: 10; opacity: 0; transition: opacity 0.4s ease; }
+        .corner-top-left.visible { opacity: 0.2; }
         .corner-bottom-right { display: none; }
         .corner-instruments { display: none; }
 
@@ -559,9 +560,10 @@
             imgs[nextIdx].classList.add('active');
         }
 
-        // Cabeçalho e Rodapé Fixos
+        // Cabeçalho, Rodapé e Pinscher Fixos
         const fixedHeader = document.getElementById('fixed-header');
         const fixedFooter = document.getElementById('fixed-footer');
+        const pinscher = document.querySelector('.corner-top-left');
         const capa = document.getElementById('page-capa');
 
         window.addEventListener('scroll', function() {
@@ -569,9 +571,11 @@
             if (capaBottom < 0) {
                 fixedHeader.classList.add('visible');
                 fixedFooter.classList.add('visible');
+                pinscher.classList.add('visible');
             } else {
                 fixedHeader.classList.remove('visible');
                 fixedFooter.classList.remove('visible');
+                pinscher.classList.remove('visible');
             }
             adjustTimelineLine();
         });
