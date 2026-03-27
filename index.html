@@ -56,9 +56,9 @@
             pointer-events: none;
         }
 
-        .corner-top-left { top: 20px; right: 20px; width: 150px; height: 150px; animation: floatGently 6s ease-in-out infinite; }
-        .corner-bottom-right { bottom: 100px; left: 20px; width: 180px; height: 180px; animation: floatGently 8s ease-in-out infinite reverse; }
-        .corner-instruments { position: fixed; top: 15px; left: 15px; width: 160px; height: 160px; opacity: 0.14; z-index: -1; pointer-events: none; animation: floatGently 7s ease-in-out infinite; }
+        .corner-top-left { display: none; }
+        .corner-bottom-right { display: none; }
+        .corner-instruments { display: none; }
 
         /* Animations */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -117,14 +117,17 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             transition: top 0.4s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             border-bottom: 1px solid var(--color-terracotta);
         }
 
         .fixed-header.visible { top: 0; }
+        .header-content { display: flex; flex-direction: column; align-items: center; flex: 1; }
         .fixed-header h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-moss-green); margin: 0; }
         .fixed-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--color-terracotta); margin: 0; }
+        .header-decorative { width: 100px; height: 100px; opacity: 0.2; animation: floatGently 6s ease-in-out infinite; }
 
         /* Rodapé Fixo */
         .fixed-footer {
@@ -133,26 +136,32 @@
             left: 0;
             width: 100%;
             background: linear-gradient(135deg, rgba(255, 248, 240, 0.93) 0%, rgba(255, 251, 247, 0.93) 50%, rgba(245, 230, 211, 0.93) 100%);
-            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/YLAVsrJsbRZZPHtw.png'), linear-gradient(135deg, rgba(255, 248, 240, 0.93) 0%, rgba(255, 251, 247, 0.93) 50%, rgba(245, 230, 211, 0.93) 100%);
+            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/MHlgjQJEjEEEPbpy.png'), linear-gradient(135deg, rgba(255, 248, 240, 0.93) 0%, rgba(255, 251, 247, 0.93) 50%, rgba(245, 230, 211, 0.93) 100%);
             background-size: cover, cover;
             background-position: center, center;
-            background-repeat: repeat-x, no-repeat;
             background-blend-mode: overlay;
             backdrop-filter: blur(8px);
             padding: 15px 20px;
             z-index: 1100;
             box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
             transition: bottom 0.4s ease;
-            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
             border-top: 1px solid var(--color-terracotta);
         }
 
         .fixed-footer.visible { bottom: 0; }
-        .fixed-footer .cities { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 5px; }
-        .fixed-footer .countdown-mini { display: flex; justify-content: center; gap: 15px; margin-top: 5px; }
+        .footer-left { display: flex; align-items: center; gap: 15px; flex: 1; }
+        .footer-decorative { width: 80px; height: 80px; opacity: 0.2; animation: floatGently 8s ease-in-out infinite reverse; }
+        .fixed-footer .cities { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin: 0; }
+        .footer-center { display: flex; flex-direction: column; align-items: center; flex: 1; }
+        .fixed-footer .countdown-mini { display: flex; justify-content: center; gap: 15px; margin: 5px 0 0 0; }
         .fixed-footer .countdown-unit { display: flex; flex-direction: column; min-width: 40px; }
         .fixed-footer .unit-val { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--color-terracotta); font-size: 1.2rem; }
         .fixed-footer .unit-label { font-size: 0.6rem; text-transform: uppercase; color: var(--color-text-light); }
+        .footer-player { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 0 0 auto; }
 
         /* Miniplayer */
         .music-player-container {
@@ -168,6 +177,13 @@
             transition: all 0.4s ease;
         }
         .music-player-container:hover { opacity: 1; }
+        .music-player-container.in-footer {
+            position: static;
+            opacity: 1;
+            transition: none;
+            align-items: center;
+        }
+        .music-player-container.in-footer:hover { opacity: 1; }
         .song-info { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--color-moss-green); background: rgba(255, 248, 240, 0.85); padding: 4px 15px; border-radius: 20px; border: 1px solid var(--color-beige-warm); backdrop-filter: blur(5px); white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .player-controls { display: flex; align-items: center; gap: 10px; background: rgba(255, 248, 240, 0.9); padding: 8px 18px; border-radius: 50px; border: 1px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); }
         .nav-btn { background: none; border: none; color: var(--color-terracotta); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
@@ -183,7 +199,7 @@
         .timeline-card { margin-bottom: 80px; display: flex; align-items: center; gap: 40px; position: relative; z-index: 1; }
         .timeline-card.image-left { flex-direction: row; }
         .timeline-card.image-right { flex-direction: row-reverse; }
-        .timeline-card-image { position: relative; flex: 0 0 35%; height: 300px; border-radius: 8px; overflow: hidden; background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6)); border: 2px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); display: flex; align-items: center; justify-content: center; }
+        .timeline-card-image { position: relative; flex: 0 0 35%; border-radius: 8px; overflow: hidden; background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6)); border: 2px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); display: flex; align-items: center; justify-content: center; aspect-ratio: auto; }
         .timeline-card-image img { display: none; width: 100%; height: 100%; object-fit: cover; filter: sepia(10%) contrast(95%); }
         .timeline-card-image img.active { display: block; }
         .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.2); color: var(--color-moss-green); border: none; padding: 10px; cursor: pointer; z-index: 2; font-size: 2rem; opacity: 0; transition: opacity 0.3s; }
@@ -269,38 +285,41 @@
 
     <!-- Cabeçalho Fixo -->
     <div id="fixed-header" class="fixed-header">
-        <h2>Carol & Filipe</h2>
-        <p>Minha gata, morada dos meus sonhos</p>
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="header-decorative" alt="decorative">
+        <div class="header-content">
+            <h2>Carol & Filipe</h2>
+            <p>Minha gata, morada dos meus sonhos</p>
+        </div>
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/bGwfByAmFpDaTAer.png" class="header-decorative" alt="decorative" style="animation-direction: reverse;">
     </div>
 
     <!-- Rodapé Fixo -->
     <div id="fixed-footer" class="fixed-footer">
-        <div class="cities">CONTAGEM • SABARÁ • BH</div>
-        <div id="footer-countdown" class="countdown-mini">
-            <div class="countdown-unit"><span class="unit-val" id="f-days">00</span><span class="unit-label">Dias</span></div>
-            <div class="countdown-unit"><span class="unit-val" id="f-hours">00</span><span class="unit-label">Horas</span></div>
-            <div class="countdown-unit"><span class="unit-val" id="f-minutes">00</span><span class="unit-label">Min</span></div>
-            <div class="countdown-unit"><span class="unit-val" id="f-seconds">00</span><span class="unit-label">Seg</span></div>
+        <div class="footer-left">
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="footer-decorative" alt="decorative">
+            <div class="cities">CONTAGEM • SABARÁ • BH</div>
+        </div>
+        <div class="footer-center">
+            <div id="footer-countdown" class="countdown-mini">
+                <div class="countdown-unit"><span class="unit-val" id="f-days">00</span><span class="unit-label">Dias</span></div>
+                <div class="countdown-unit"><span class="unit-val" id="f-hours">00</span><span class="unit-label">Horas</span></div>
+                <div class="countdown-unit"><span class="unit-val" id="f-minutes">00</span><span class="unit-label">Min</span></div>
+                <div class="countdown-unit"><span class="unit-val" id="f-seconds">00</span><span class="unit-label">Seg</span></div>
+            </div>
+        </div>
+        <div class="footer-player">
+            <div id="song-info" class="song-info">Dias de Luta, Dias de Glória</div>
+            <div class="player-controls">
+                <button class="nav-btn" onclick="changeTrack(-1)" title="Anterior">❮</button>
+                <button id="floating-play" onclick="toggleMusic()" title="Tocar música">♪</button>
+                <button class="nav-btn" onclick="changeTrack(1)" title="Próxima">❯</button>
+            </div>
         </div>
     </div>
-
-    <!-- Decorativos -->
-    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
-    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="decorative-corner corner-bottom-right" alt="decorative ornament">
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/bGwfByAmFpDaTAer.png" class="decorative-corner corner-instruments" alt="decorative instruments">
 
     <audio id="musicaTema" preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
-
-    <div class="music-player-container">
-        <div id="song-info" class="song-info">Dias de Luta, Dias de Glória</div>
-        <div class="player-controls">
-            <button class="nav-btn" onclick="changeTrack(-1)" title="Anterior">❮</button>
-            <button id="floating-play" onclick="toggleMusic()" title="Tocar música">♪</button>
-            <button class="nav-btn" onclick="changeTrack(1)" title="Próxima">❯</button>
-        </div>
-    </div>
 
     <header id="page-capa">
         <h1>Carol & Filipe</h1>
