@@ -72,14 +72,6 @@
         @keyframes photoFrameFloat { 0%, 100% { transform: translateY(0px) rotateZ(-3deg); } 50% { transform: translateY(-12px) rotateZ(-3deg); } }
         @keyframes photoFrameHover { 0% { transform: translateY(-12px) rotateZ(-3deg) scale(1); } 50% { transform: translateY(-20px) rotateZ(0deg) scale(1.08); } 100% { transform: translateY(-12px) rotateZ(-3deg) scale(1); } }
 
-        /* Nova animação para notas flutuantes criativas */
-        @keyframes floatingMusicalNotes {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.8; }
-            100% { transform: translateY(-80px) rotate(20deg); opacity: 0; }
-        }
-
         /* Capa (Início) */
         header {
             min-height: 100vh;
@@ -218,7 +210,7 @@
         .highlight-section h4 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--color-moss-green); }
         .map-btn { display: inline-block; margin-top: 15px; padding: 10px 20px; color: var(--color-terracotta); text-decoration: none; border: 1px solid var(--color-terracotta); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-weight: 600; cursor: pointer; background: none; }
 
-        /* Unificação Musical Ajustada com Notas Flutuantes */
+        /* Unificação: Se eu crer + Próximo Hino */
         .hymns-unified-section {
             background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
             padding: 60px 40px;
@@ -227,42 +219,19 @@
             margin: 80px 0;
             text-align: center;
             position: relative;
-            overflow: visible;
+            overflow: hidden;
             z-index: 1;
             box-shadow: 0 15px 40px rgba(201, 168, 118, 0.2);
         }
 
         .hymns-unified-section h4 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--color-moss-green); margin-bottom: 20px; }
-        
-        .musical-staff { 
-            width: 100%; 
-            max-width: 400px; 
-            height: 60px; 
-            margin: 40px auto; 
-            position: relative; 
-        }
-
-        .staff-line { position: absolute; width: 100%; height: 1px; background: var(--color-terracotta); opacity: 0.3; }
-        .staff-line:nth-child(1) { top: 20%; }
-        .staff-line:nth-child(2) { top: 40%; }
-        .staff-line:nth-child(3) { top: 60%; }
-        .staff-line:nth-child(4) { top: 80%; }
-        .staff-line:nth-child(5) { top: 100%; }
-
-        .floating-note {
-            position: absolute;
-            font-size: 1.8rem;
-            color: var(--color-moss-green);
-            animation: floatingMusicalNotes 3s linear infinite;
-            opacity: 0;
-        }
-        
-        /* Delays e Posições das Notas */
-        .n1 { left: 15%; animation-delay: 0s; }
-        .n2 { left: 35%; animation-delay: 1.2s; }
-        .n3 { left: 55%; animation-delay: 0.6s; }
-        .n4 { left: 75%; animation-delay: 2.1s; }
-        .n5 { left: 90%; animation-delay: 1.5s; }
+        .hymns-unified-section .musical-staff { width: 100%; max-width: 400px; height: 60px; margin: 20px auto; position: relative; }
+        .hymns-unified-section .staff-line { position: absolute; width: 100%; height: 1px; background: var(--color-terracotta); opacity: 0.3; }
+        .hymns-unified-section .staff-line:nth-child(1) { top: 20%; }
+        .hymns-unified-section .staff-line:nth-child(2) { top: 40%; }
+        .hymns-unified-section .staff-line:nth-child(3) { top: 60%; }
+        .hymns-unified-section .staff-line:nth-child(4) { top: 80%; }
+        .hymns-unified-section .staff-line:nth-child(5) { top: 100%; }
 
         /* Envelopes + Álbum Integrado */
         .envelopes-section { margin: 80px 0; text-align: center; position: relative; z-index: 1; }
@@ -285,34 +254,9 @@
         .frame-icon { font-size: 3.5rem; margin-bottom: 10px; }
         .frame-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-moss-green); font-weight: 600; }
 
-        /* Modais Centralizados Absolutamente */
-        .modal { 
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.6); 
-            animation: fadeInUp 0.3s ease-out; 
-        }
-        
-        .modal-content { 
-            background-color: var(--color-cream); 
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* Centro Absoluto */
-            padding: 40px; 
-            border: 2px solid var(--color-terracotta); 
-            border-radius: 8px; 
-            width: 90%; 
-            max-width: 600px; 
-            text-align: center; 
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); 
-        }
-
+        /* Modais */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); animation: fadeInUp 0.3s ease-out; }
+        .modal-content { background-color: var(--color-cream); margin: 5% auto; padding: 40px; border: 2px solid var(--color-terracotta); border-radius: 8px; width: 90%; max-width: 600px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); position: relative; }
         .close-btn { color: var(--color-terracotta); position: absolute; right: 20px; top: 10px; font-size: 2.5rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
         .close-btn:hover { color: var(--color-moss-green); }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; border: 1px solid var(--color-beige-warm); }
@@ -334,13 +278,16 @@
 </head>
 <body>
 
+    <!-- Cabeçalho Fixo -->
     <div id="fixed-header" class="fixed-header">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="header-decorative" alt="decorative">
         <div class="header-content">
             <h2>Carol & Filipe</h2>
             <p>Minha gata, morada dos meus sonhos</p>
         </div>
     </div>
 
+    <!-- Rodapé Fixo -->
     <div id="fixed-footer" class="fixed-footer">
         <div class="footer-center">
             <div class="footer-label">Nosso 'SIM' em:</div>
@@ -351,8 +298,10 @@
                 <div class="countdown-unit"><span class="unit-val" id="f-seconds">00</span><span class="unit-label">Seg</span></div>
             </div>
         </div>
+
     </div>
 
+    <!-- Decorativos -->
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
 
     <audio id="musicaTema" preload="auto">
@@ -376,11 +325,12 @@
     <section id="main-section">
         <div class="timeline-line" id="timeline-line"></div>
 
+        <!-- Timeline Cards -->
         <div class="timeline-card image-left">
             <div class="timeline-card-image" id="slider-12-jan">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-12-jan', -1)">❮</button>
-                <img src="011225 - Bíblia perdida.jpeg" class="active">
-                <img src="011225 - Primeira Mensagem.jpeg">
+                <img src="011225 - Bíblia perdida.jpeg" class="active" alt="Bíblia Perdida">
+                <img src="011225 - Primeira Mensagem.jpeg" alt="Primeira Mensagem">
                 <button class="slider-arrow arrow-right" onclick="moveSlide('slider-12-jan', 1)">❯</button>
             </div>
             <div class="timeline-card-content">
@@ -393,8 +343,8 @@
         <div class="timeline-card image-right">
             <div class="timeline-card-image" id="slider-22-mar">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-22-mar', -1)">❮</button>
-                <img src="indoeldorado.jpeg" class="active">
-                <img src="fimculto.jpeg">
+                <img src="indoeldorado.jpeg" class="active" alt="Indo me encontrar">
+                <img src="fimculto.jpeg" alt="O culto acabou">
                 <button class="slider-arrow arrow-right" onclick="moveSlide('slider-22-mar', 1)">❯</button>
             </div>
             <div class="timeline-card-content">
@@ -412,9 +362,10 @@
         <div class="timeline-card image-left">
             <div class="timeline-card-image" id="slider-09-abr">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-09-abr', -1)">❮</button>
-                <img src="OndeTeEncontrei.png" class="active">
-                <img src="Praça.png">
-                <img src="LocaldoBeijo.png">
+                <img src="OndeTeEncontrei.png" class="active" alt="Onde te Encontrei">
+                <img src="Praça.png" alt="Praça">
+                <img src="LocaldoBeijo.png" alt="Local do Beijo">
+                <img src="SeqBeijo.png" alt="Onde ficamos depois do Beijo">
                 <button class="slider-arrow arrow-right" onclick="moveSlide('slider-09-abr', 1)">❯</button>
             </div>
             <div class="timeline-card-content">
@@ -427,7 +378,7 @@
         <div class="timeline-card image-right">
             <div class="timeline-card-image" id="slider-12-abr">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-12-abr', -1)">❮</button>
-                <img src="120425 - Encontro Parque Ecológico.jpeg" class="active">
+                <img src="120425 - Encontro Parque Ecológico.jpeg" class="active" alt="Primeiro Passeio">
                 <button class="slider-arrow arrow-right" onclick="moveSlide('slider-12-abr', 1)">❯</button>
             </div>
             <div class="timeline-card-content">
@@ -440,8 +391,8 @@
         <div class="timeline-card image-left" id="card-25-mai">
             <div class="timeline-card-image" id="slider-25-mai">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-25-mai', -1)">❮</button>
-                <img src="aliança.jpeg" class="active">
-                <img src="25 maio.jpeg">
+                <img src="aliança.jpeg" class="active" alt="Aliança pronta">
+                <img src="25 maio.jpeg" alt="Pedido feito">
                 <button class="slider-arrow arrow-right" onclick="moveSlide('slider-25-mai', 1)">❯</button>
             </div>
             <div class="timeline-card-content" id="content-25-mai">
@@ -450,70 +401,76 @@
             </div>
         </div>
 
+        <!-- Unificação: Se eu crer + Próximo Hino -->
         <div class="hymns-unified-section">
             <h4>Nossa Trilha Sonora</h4>
             <div class="musical-staff">
                 <div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div>
-                <span class="floating-note n1">♪</span>
-                <span class="floating-note n2">♫</span>
-                <span class="floating-note n3">♪</span>
-                <span class="floating-note n4">♬</span>
-                <span class="floating-note n5">♩</span>
+                <span class="floating-note" style="left:10%; top:10%;">♪</span>
+                <span class="floating-note" style="right:15%; top:30%;">♫</span>
             </div>
             <p style="font-style: italic; margin-bottom: 20px;">
-                <strong>"Se eu crer"</strong> marcou o início. Mas nossa história é um hino em construção que será escrito por nós dois.
+                <strong>"Se eu crer"</strong> foi o primeiro hino que você me enviou, marcando o início da nossa fé compartilhada. 
+                Mas nossa história é um hino em construção: virão novos louvores e canções que, assim como as músicas que já ouvimos, 
+                irão eternizar cada passo do nosso "nós".
             </p>
             <button class="map-btn" onclick="openVideoModal()">Assistir Momento Especial</button>
         </div>
 
+        <!-- Envelopes + Álbum Integrado -->
         <div class="envelopes-section">
-            <h2 style="font-family:'Playfair Display'; color:var(--color-moss-green); margin-bottom:30px;">Os Envelopes do Amanhã</h2>
+            <h2 class="envelopes-title">Os Envelopes do Amanhã</h2>
+            <p class="envelopes-subtitle">Mistérios e momentos que ainda iremos viver e registrar</p>
+            
             <div class="envelopes-container">
                 <div class="envelope" onclick="openEnvelopeModal(0)">
                     <div class="envelope-flap"></div>
-                    <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&fit=crop');">
+                    <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=400&fit=crop');">
                         <div class="envelope-label">Primeira Viagem</div>
                     </div>
                 </div>
                 <div class="envelope" onclick="openEnvelopeModal(1)">
                     <div class="envelope-flap"></div>
-                    <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=500&fit=crop');">
-                        <div class="envelope-label">Chave da Casa</div>
+                    <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=500&h=400&fit=crop');">
+                        <div class="envelope-label">Chave da Nossa Casa</div>
                     </div>
                 </div>
                 <div class="envelope" onclick="openEnvelopeModal(2)">
                     <div class="envelope-flap"></div>
-                    <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&fit=crop');">
+                    <div class="envelope-body" style="background-image: url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&h=400&fit=crop');">
                         <div class="envelope-label">Promessas Eternas</div>
                     </div>
                 </div>
             </div>
-            
-            <a href="COLOQUE_AQUI_O_LINK_DO_ALBUM_GOOGLE_FOTOS" target="_blank" class="album-button">
-                <div class="photo-frame">
-                    <span style="font-size:3rem;">📸</span>
-                    <span style="font-family:'Playfair Display'; color:var(--color-moss-green); font-weight:600;">Nosso Álbum</span>
-                </div>
-            </a>
+
+            <div class="album-integrated">
+                <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; margin-bottom: 30px; color: var(--color-text-light);">
+                    Enquanto o futuro é um suspense, vamos apreciar os momentos que já nos trouxeram até aqui.
+                </p>
+                <a href="COLOQUE_AQUI_O_LINK_DO_ALBUM_GOOGLE_FOTOS" target="_blank" class="album-button">
+                    <div class="photo-frame">
+                        <div class="frame-content">
+                            <div class="frame-icon">📸</div>
+                            <div class="frame-text">Nosso Álbum</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>CONTAGEM • SABARÁ • BH</p>
-        <p>NOSSO "SIM" ESTÁ CHEGANDO: 14 DE ABRIL DE 2027</p>
-    </footer>
-
+    <!-- Modais -->
     <div id="envelopeModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeEnvelopeModal()">×</span>
+            <span class="close-btn" onclick="closeEnvelopeModal()">&times;</span>
             <h3 id="modalTitle" style="font-family:'Playfair Display'; color:var(--color-moss-green); margin-bottom:15px;">Título</h3>
-            <p id="modalMessage" style="font-family:'Cormorant Garamond'; font-style:italic; font-size:1.2rem; color:var(--color-text-light);"></p>
+            <p id="modalMessage" style="font-family:'Cormorant Garamond'; font-style:italic;">Mensagem</p>
         </div>
     </div>
 
     <div id="videoModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeVideoModal()">×</span>
+            <span class="close-btn" onclick="closeVideoModal()">&times;</span>
             <h3 style="font-family:'Playfair Display'; color:var(--color-moss-green);">Nossa História em Vídeo</h3>
             <div class="video-container">
                 <iframe id="videoIframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -522,6 +479,7 @@
     </div>
 
     <script>
+        // Configurações Iniciais
         const playlist = [
             { title: "Dias de Luta, Dias de Glória", file: "musica.mp3" },
             { title: "Explodir - Anavitória", file: "musica2.mp3" },
@@ -540,7 +498,11 @@
         const songInfo = document.getElementById('song-info');
         const videoIframe = document.getElementById('videoIframe');
 
-        audio.addEventListener('ended', function() { changeTrack(1); audio.play(); });
+        // Troca Automática de Música
+        audio.addEventListener('ended', function() {
+            changeTrack(1);
+            audio.play();
+        });
 
         function toggleMusic() {
             if (audio.paused) {
@@ -559,19 +521,23 @@
             if (isPlaying) audio.play();
         }
 
+        // Modais
         function openEnvelopeModal(index) {
             document.getElementById('modalTitle').innerText = envelopeMessages[index].title;
             document.getElementById('modalMessage').innerText = envelopeMessages[index].message;
             document.getElementById('envelopeModal').style.display = 'block';
         }
         function closeEnvelopeModal() { document.getElementById('envelopeModal').style.display = 'none'; }
-        
-        function openVideoModal() { 
-            if (!audio.paused) toggleMusic();
-            document.getElementById('videoModal').style.display = 'block'; 
+
+        function openVideoModal() {
+            if (!audio.paused) {
+                audio.pause();
+                playButton.classList.remove('playing');
+            }
+            document.getElementById('videoModal').style.display = 'block';
         }
-        function closeVideoModal() { 
-            document.getElementById('videoModal').style.display = 'none'; 
+        function closeVideoModal() {
+            document.getElementById('videoModal').style.display = 'none';
             const iframeSrc = videoIframe.src;
             videoIframe.src = iframeSrc;
         }
@@ -583,6 +549,7 @@
             }
         };
 
+        // Sliders
         function moveSlide(sliderId, direction) {
             const slider = document.getElementById(sliderId);
             const imgs = slider.getElementsByTagName('img');
@@ -593,33 +560,54 @@
             imgs[nextIdx].classList.add('active');
         }
 
+        // Cabeçalho, Rodapé e Pinscher Fixos
+        const fixedHeader = document.getElementById('fixed-header');
+        const fixedFooter = document.getElementById('fixed-footer');
+        const pinscher = document.querySelector('.corner-top-left');
+        const capa = document.getElementById('page-capa');
+
         window.addEventListener('scroll', function() {
-            const capa = document.getElementById('page-capa');
-            const isBelowCapa = capa.getBoundingClientRect().bottom < 0;
-            document.getElementById('fixed-header').classList.toggle('visible', isBelowCapa);
-            document.getElementById('fixed-footer').classList.toggle('visible', isBelowCapa);
-            document.querySelector('.corner-top-left').classList.toggle('visible', isBelowCapa);
-            
-            // Ajuste da Linha
-            const section = document.getElementById('main-section');
-            const targetContent = document.getElementById('content-25-mai');
-            const timelineLine = document.getElementById('timeline-line');
-            if (section && targetContent && timelineLine) {
-                const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-                const contentTop = targetContent.getBoundingClientRect().top + window.scrollY;
-                timelineLine.style.height = Math.max(0, contentTop - sectionTop) + 'px';
+            const capaBottom = capa.getBoundingClientRect().bottom;
+            if (capaBottom < 0) {
+                fixedHeader.classList.add('visible');
+                fixedFooter.classList.add('visible');
+                pinscher.classList.add('visible');
+            } else {
+                fixedHeader.classList.remove('visible');
+                fixedFooter.classList.remove('visible');
+                pinscher.classList.remove('visible');
             }
+            adjustTimelineLine();
         });
 
+        // Contador Regressivo
         const targetDate = new Date("April 14, 2027 00:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
             const dist = targetDate - now;
-            document.getElementById("f-days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("f-hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("f-minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("f-seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+            const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((dist % (1000 * 60)) / 1000);
+            
+            document.getElementById("f-days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("f-hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("f-minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("f-seconds").innerText = s.toString().padStart(2, '0');
         }, 1000);
+
+        // Ajuste da Linha da Timeline
+        function adjustTimelineLine() {
+            const section = document.getElementById('main-section');
+            const targetContent = document.getElementById('content-25-mai');
+            const timelineLine = document.getElementById('timeline-line');
+            if (!section || !targetContent || !timelineLine) return;
+            const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+            const contentTop = targetContent.getBoundingClientRect().top + window.scrollY;
+            timelineLine.style.height = Math.max(0, contentTop - sectionTop) + 'px';
+        }
+        window.addEventListener('load', adjustTimelineLine);
+        window.addEventListener('resize', adjustTimelineLine);
     </script>
 </body>
 </html>
