@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Romantic Color Palette */
             --color-beige-warm: #F5E6D3;
             --color-moss-green: #8B9D83;
             --color-terracotta: #C9A876;
@@ -18,7 +19,11 @@
             --color-text-light: #6B6B6B;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Lora', serif;
@@ -28,16 +33,33 @@
             overflow-x: hidden;
         }
 
+        /* Background Pattern */
         body::before {
             content: "";
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: 
                 radial-gradient(circle at 20% 50%, rgba(201, 168, 118, 0.03) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(139, 157, 131, 0.03) 0%, transparent 50%);
             pointer-events: none;
             z-index: -2;
         }
+
+        /* Decorative Elements */
+        .decorative-corner {
+            position: fixed;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .corner-top-left { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); width: 150px; height: 150px; animation: floatGently 6s ease-in-out infinite; z-index: 10; opacity: 0; transition: opacity 0.4s ease; }
+        .corner-top-left.visible { opacity: 0.2; }
+        .corner-bottom-right { display: none; }
+        .corner-instruments { display: none; }
 
         /* Animations */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -46,18 +68,16 @@
         @keyframes musicPlaying { 0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 118, 0.7), 0 0 0 0 rgba(139, 157, 131, 0.5); } 50% { box-shadow: 0 0 0 10px rgba(201, 168, 118, 0), 0 0 0 20px rgba(139, 157, 131, 0); } }
         @keyframes envelopeFloat { 0%, 100% { transform: translateY(0px) rotateZ(0deg); } 50% { transform: translateY(-15px) rotateZ(2deg); } }
         @keyframes envelopeHover { 0% { transform: translateY(-15px) rotateZ(2deg) scale(1); } 50% { transform: translateY(-25px) rotateZ(3deg) scale(1.05); } 100% { transform: translateY(-15px) rotateZ(2deg) scale(1); } }
+        @keyframes noteFloat { 0%, 100% { opacity: 0.3; transform: translateY(0px) translateX(0px); } 50% { opacity: 0.6; transform: translateY(-20px) translateX(10px); } }
         @keyframes photoFrameFloat { 0%, 100% { transform: translateY(0px) rotateZ(-3deg); } 50% { transform: translateY(-12px) rotateZ(-3deg); } }
-        
-        /* Nova Animação para Notas e Pauta */
-        @keyframes noteFloatRandom {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.6; }
-            100% { transform: translate(40px, -60px) rotate(20deg); opacity: 0; }
-        }
-        @keyframes lineWave {
-            0%, 100% { transform: scaleY(1); opacity: 0.3; }
-            50% { transform: scaleY(1.1); opacity: 0.5; }
+        @keyframes photoFrameHover { 0% { transform: translateY(-12px) rotateZ(-3deg) scale(1); } 50% { transform: translateY(-20px) rotateZ(0deg) scale(1.08); } 100% { transform: translateY(-12px) rotateZ(-3deg) scale(1); } }
+
+        /* Nova animação para notas flutuantes criativas */
+        @keyframes floatingMusicalNotes {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-80px) rotate(20deg); opacity: 0; }
         }
 
         /* Capa (Início) */
@@ -96,6 +116,10 @@
             left: 0;
             width: 100%;
             background: linear-gradient(135deg, rgba(255, 248, 240, 0.92) 0%, rgba(255, 251, 247, 0.92) 50%, rgba(245, 230, 211, 0.92) 100%);
+            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/MHlgjQJEjEEEPbpy.png'), linear-gradient(135deg, rgba(255, 248, 240, 0.92) 0%, rgba(255, 251, 247, 0.92) 50%, rgba(245, 230, 211, 0.92) 100%);
+            background-size: cover, cover;
+            background-position: center, center;
+            background-blend-mode: overlay;
             backdrop-filter: blur(8px);
             padding: 12px 20px;
             z-index: 1100;
@@ -104,9 +128,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             border-bottom: 1px solid var(--color-terracotta);
         }
+
         .fixed-header.visible { top: 0; }
+        .header-decorative { width: 100px; height: 100px; opacity: 0.2; animation: floatGently 6s ease-in-out infinite; display: none; }
+        .header-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .fixed-header h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-moss-green); margin: 0; }
         .fixed-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--color-terracotta); margin: 0; }
 
@@ -117,6 +145,10 @@
             left: 0;
             width: 100%;
             background: linear-gradient(135deg, rgba(255, 248, 240, 0.93) 0%, rgba(255, 251, 247, 0.93) 50%, rgba(245, 230, 211, 0.93) 100%);
+            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/MHlgjQJEjEEEPbpy.png'), linear-gradient(135deg, rgba(255, 248, 240, 0.93) 0%, rgba(255, 251, 247, 0.93) 50%, rgba(245, 230, 211, 0.93) 100%);
+            background-size: cover, cover;
+            background-position: center, center;
+            background-blend-mode: overlay;
             backdrop-filter: blur(8px);
             padding: 15px 20px;
             z-index: 1100;
@@ -125,43 +157,52 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             border-top: 1px solid var(--color-terracotta);
         }
+
         .fixed-footer.visible { bottom: 0; }
-        .footer-label { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 5px; }
-        .fixed-footer .countdown-mini { display: flex; gap: 15px; }
+        .footer-left { display: none; }
+        .footer-decorative { display: none; }
+        .fixed-footer .cities { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 5px; }
+        .footer-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .fixed-footer .countdown-mini { display: flex; justify-content: center; gap: 15px; margin: 5px 0 0 0; }
+        .fixed-footer .countdown-unit { display: flex; flex-direction: column; min-width: 40px; }
         .fixed-footer .unit-val { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--color-terracotta); font-size: 1.2rem; }
         .fixed-footer .unit-label { font-size: 0.6rem; text-transform: uppercase; color: var(--color-text-light); }
+        .footer-player { display: none; }
+        .footer-label { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 5px; }
 
         /* Miniplayer */
         .music-player-container {
             position: fixed;
             bottom: 180px;
-            left: 30px;
+            right: 30px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: flex-end;
             z-index: 1000;
             gap: 12px;
             opacity: 0.6;
             transition: all 0.4s ease;
         }
         .music-player-container:hover { opacity: 1; }
-        .song-info { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--color-moss-green); background: rgba(255, 248, 240, 0.85); padding: 4px 15px; border-radius: 20px; border: 1px solid var(--color-beige-warm); backdrop-filter: blur(5px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .song-info { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--color-moss-green); background: rgba(255, 248, 240, 0.85); padding: 4px 15px; border-radius: 20px; border: 1px solid var(--color-beige-warm); backdrop-filter: blur(5px); white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .player-controls { display: flex; align-items: center; gap: 10px; background: rgba(255, 248, 240, 0.9); padding: 8px 18px; border-radius: 50px; border: 1px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); }
-        .nav-btn { background: none; border: none; color: var(--color-terracotta); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; }
-        #floating-play { background: linear-gradient(135deg, var(--color-terracotta), var(--color-moss-green)); color: var(--color-cream); border: 2px solid rgba(255, 248, 240, 0.5); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; animation: softPulse 3s ease-in-out infinite; }
+        .nav-btn { background: none; border: none; color: var(--color-terracotta); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+        .nav-btn:hover { color: var(--color-moss-green); transform: scale(1.1); }
+        #floating-play { background: linear-gradient(135deg, var(--color-terracotta), var(--color-moss-green)); color: var(--color-cream); border: 2px solid rgba(255, 248, 240, 0.5); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.4rem; transition: all 0.3s ease; animation: softPulse 3s ease-in-out infinite; }
         #floating-play.playing { animation: musicPlaying 1.5s ease-in-out infinite; }
 
         /* Main Content */
-        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; position: relative; }
-        .timeline-line { position: absolute; left: 50%; top: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, var(--color-terracotta), var(--color-terracotta) 10px, transparent 10px, transparent 20px); opacity: 0.3; transform: translateX(-50%); z-index: 0; }
+        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; animation: fadeInUp 0.8s ease-out; position: relative; }
+        .timeline-line { position: absolute; left: 50%; top: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, var(--color-terracotta), var(--color-terracotta) 10px, transparent 10px, transparent 20px); opacity: 0.3; transform: translateX(-50%); pointer-events: none; z-index: 0; }
 
         /* Timeline Cards */
         .timeline-card { margin-bottom: 80px; display: flex; align-items: center; gap: 40px; position: relative; z-index: 1; }
         .timeline-card.image-left { flex-direction: row; }
         .timeline-card.image-right { flex-direction: row-reverse; }
-        .timeline-card-image { position: relative; flex: 0 0 35%; border-radius: 8px; overflow: hidden; background: #eee; border: 2px solid var(--color-terracotta); display: flex; align-items: center; justify-content: center; }
+        .timeline-card-image { position: relative; flex: 0 0 35%; border-radius: 8px; overflow: hidden; background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6)); border: 2px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); display: flex; align-items: center; justify-content: center; aspect-ratio: auto; }
         .timeline-card-image img { display: none; width: 100%; height: 100%; object-fit: cover; filter: sepia(10%) contrast(95%); }
         .timeline-card-image img.active { display: block; }
         .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.2); color: var(--color-moss-green); border: none; padding: 10px; cursor: pointer; z-index: 2; font-size: 2rem; opacity: 0; transition: opacity 0.3s; }
@@ -172,7 +213,12 @@
         .timeline-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--color-moss-green); margin-bottom: 15px; border-bottom: 2px solid var(--color-terracotta); display: inline-block; }
         .timeline-card p { color: var(--color-text-light); font-size: 1.1rem; line-height: 1.8; font-style: italic; }
 
-        /* Unificação Musical APRIMORADA */
+        /* Highlight Section */
+        .highlight-section { background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6)); padding: 40px; border-radius: 8px; border: 2px solid var(--color-terracotta); margin: 60px 0; text-align: center; box-shadow: 0 10px 30px rgba(201, 168, 118, 0.15); position: relative; z-index: 1; }
+        .highlight-section h4 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--color-moss-green); }
+        .map-btn { display: inline-block; margin-top: 15px; padding: 10px 20px; color: var(--color-terracotta); text-decoration: none; border: 1px solid var(--color-terracotta); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-weight: 600; cursor: pointer; background: none; }
+
+        /* Unificação Musical Ajustada com Notas Flutuantes */
         .hymns-unified-section {
             background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
             padding: 60px 40px;
@@ -181,75 +227,108 @@
             margin: 80px 0;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             z-index: 1;
+            box-shadow: 0 15px 40px rgba(201, 168, 118, 0.2);
         }
-        .musical-staff { width: 100%; max-width: 500px; height: 100px; margin: 30px auto; position: relative; }
-        .staff-line { position: absolute; width: 100%; height: 1px; background: var(--color-terracotta); animation: lineWave 4s ease-in-out infinite; }
-        .staff-line:nth-child(1) { top: 10%; animation-delay: 0s; }
-        .staff-line:nth-child(2) { top: 30%; animation-delay: 0.2s; }
-        .staff-line:nth-child(3) { top: 50%; animation-delay: 0.4s; }
-        .staff-line:nth-child(4) { top: 70%; animation-delay: 0.6s; }
-        .staff-line:nth-child(5) { top: 90%; animation-delay: 0.8s; }
+
+        .hymns-unified-section h4 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--color-moss-green); margin-bottom: 20px; }
         
+        .musical-staff { 
+            width: 100%; 
+            max-width: 400px; 
+            height: 60px; 
+            margin: 40px auto; 
+            position: relative; 
+        }
+
+        .staff-line { position: absolute; width: 100%; height: 1px; background: var(--color-terracotta); opacity: 0.3; }
+        .staff-line:nth-child(1) { top: 20%; }
+        .staff-line:nth-child(2) { top: 40%; }
+        .staff-line:nth-child(3) { top: 60%; }
+        .staff-line:nth-child(4) { top: 80%; }
+        .staff-line:nth-child(5) { top: 100%; }
+
         .floating-note {
             position: absolute;
             font-size: 1.8rem;
             color: var(--color-moss-green);
+            animation: floatingMusicalNotes 3s linear infinite;
             opacity: 0;
-            animation: noteFloatRandom 5s linear infinite;
         }
-        /* Distribuição de notas animadas */
-        .n1 { left: 10%; top: 40%; animation-delay: 0s; }
-        .n2 { left: 30%; top: 20%; animation-delay: 1.5s; }
-        .n3 { left: 50%; top: 50%; animation-delay: 3s; }
-        .n4 { left: 70%; top: 10%; animation-delay: 0.5s; }
-        .n5 { left: 90%; top: 30%; animation-delay: 2.2s; }
+        
+        /* Delays e Posições das Notas */
+        .n1 { left: 15%; animation-delay: 0s; }
+        .n2 { left: 35%; animation-delay: 1.2s; }
+        .n3 { left: 55%; animation-delay: 0.6s; }
+        .n4 { left: 75%; animation-delay: 2.1s; }
+        .n5 { left: 90%; animation-delay: 1.5s; }
 
-        .map-btn { display: inline-block; margin-top: 15px; padding: 10px 20px; color: var(--color-terracotta); text-decoration: none; border: 1px solid var(--color-terracotta); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-weight: 600; cursor: pointer; background: none; }
-
-        /* Envelopes */
-        .envelopes-section { margin: 80px 0; text-align: center; }
+        /* Envelopes + Álbum Integrado */
+        .envelopes-section { margin: 80px 0; text-align: center; position: relative; z-index: 1; }
+        .envelopes-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--color-moss-green); margin-bottom: 15px; letter-spacing: 2px; }
+        .envelopes-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--color-terracotta); font-size: 1.1rem; margin-bottom: 50px; }
         .envelopes-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 60px; }
-        .envelope { position: relative; width: 100%; max-width: 280px; height: 200px; margin: 0 auto; cursor: pointer; animation: envelopeFloat 4s ease-in-out infinite; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .envelope-body { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; border: 2px solid var(--color-terracotta); display: flex; align-items: center; justify-content: center; }
-        .envelope-body::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(245, 230, 211, 0.6); backdrop-filter: blur(8px); z-index: 1; }
-        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(to bottom, var(--color-terracotta), var(--color-beige-warm)); clip-path: polygon(0 0, 100% 0, 50% 100%); z-index: 3; border-bottom: 1px solid var(--color-terracotta); transition: transform 0.3s; }
+        .envelope { position: relative; width: 100%; max-width: 280px; height: 320px; margin: 0 auto; cursor: pointer; animation: envelopeFloat 4s ease-in-out infinite; transition: all 0.3s ease; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); }
+        .envelope-body { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; border: 2px solid var(--color-terracotta); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .envelope-body::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(245, 230, 211, 0.5); backdrop-filter: blur(8px); z-index: 1; }
+        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(to bottom, var(--color-terracotta), var(--color-beige-warm)); clip-path: polygon(0 0, 100% 0, 50% 100%); transition: all 0.3s ease; transform-origin: top; z-index: 3; border-bottom: 2px solid var(--color-terracotta); }
         .envelope:hover .envelope-flap { transform: rotateX(-25deg); }
         .envelope-label { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--color-text-dark); font-style: italic; font-weight: 600; z-index: 4; }
 
-        /* Álbum */
-        .album-button { width: 280px; height: 180px; margin: 0 auto; text-decoration: none; display: block; animation: photoFrameFloat 4s ease-in-out infinite; }
-        .photo-frame { width: 100%; height: 100%; background: #fff; border: 10px solid #fff; border-radius: 2px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); transform: rotateZ(-3deg); transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        /* Álbum Integrado */
+        .album-integrated { margin-top: 60px; border-top: 1px dashed var(--color-terracotta); padding-top: 40px; }
+        .album-button { position: relative; width: 280px; height: 200px; cursor: pointer; text-decoration: none; animation: photoFrameFloat 4s ease-in-out infinite; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+        .photo-frame { position: relative; width: 100%; height: 100%; background: linear-gradient(135deg, var(--color-beige-warm), rgba(232, 213, 208, 0.8)); border: 12px solid var(--color-beige-warm); border-radius: 4px; box-shadow: 0 15px 40px rgba(201, 168, 118, 0.3); display: flex; align-items: center; justify-content: center; overflow: hidden; transform: rotateZ(-3deg); transition: all 0.3s ease; }
         .album-button:hover .photo-frame { transform: rotateZ(0deg) scale(1.05); }
+        .frame-content { position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(139, 157, 131, 0.05); z-index: 2; }
+        .frame-icon { font-size: 3.5rem; margin-bottom: 10px; }
+        .frame-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-moss-green); font-weight: 600; }
 
-        /* MODAL CENTRALIZADO ABSOLUTAMENTE */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); animation: fadeInUp 0.3s ease-out; }
+        /* Modais Centralizados Absolutamente */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.6); 
+            animation: fadeInUp 0.3s ease-out; 
+        }
+        
         .modal-content { 
             background-color: var(--color-cream); 
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Centro absoluto */
+            transform: translate(-50%, -50%); /* Centro Absoluto */
             padding: 40px; 
             border: 2px solid var(--color-terracotta); 
-            border-radius: 12px; 
+            border-radius: 8px; 
             width: 90%; 
             max-width: 600px; 
             text-align: center; 
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4); 
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); 
         }
-        .close-btn { color: var(--color-terracotta); position: absolute; right: 20px; top: 10px; font-size: 2.5rem; font-weight: bold; cursor: pointer; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; }
+
+        .close-btn { color: var(--color-terracotta); position: absolute; right: 20px; top: 10px; font-size: 2.5rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
+        .close-btn:hover { color: var(--color-moss-green); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; border: 1px solid var(--color-beige-warm); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        footer { padding: 120px 20px 200px; text-align: center; border-top: 2px solid var(--color-terracotta); }
+        footer { padding: 120px 20px 180px; text-align: center; border-top: 2px solid var(--color-terracotta); position: relative; z-index: 1; }
 
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .timeline-card { flex-direction: column !important; }
             .timeline-card-image { flex: 0 0 100%; width: 100%; }
-            .music-player-container { bottom: 130px; left: 20px; }
+            .music-player-container { bottom: 120px; right: 20px; }
+            .timeline-line, .corner-instruments, .decorative-corner { display: none; }
+            .fixed-header h2 { font-size: 1.1rem; }
+            .fixed-header p { font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -263,16 +342,18 @@
     </div>
 
     <div id="fixed-footer" class="fixed-footer">
-        <div class="footer-label">Nosso 'SIM' em:</div>
-        <div id="footer-countdown" class="countdown-mini">
-            <div class="countdown-unit"><span class="unit-val" id="f-days">00</span><span class="unit-label">Dias</span></div>
-            <div class="countdown-unit"><span class="unit-val" id="f-hours">00</span><span class="unit-label">Horas</span></div>
-            <div class="countdown-unit"><span class="unit-val" id="f-minutes">00</span><span class="unit-label">Min</span></div>
-            <div class="countdown-unit"><span class="unit-val" id="f-seconds">00</span><span class="unit-label">Seg</span></div>
+        <div class="footer-center">
+            <div class="footer-label">Nosso 'SIM' em:</div>
+            <div id="footer-countdown" class="countdown-mini">
+                <div class="countdown-unit"><span class="unit-val" id="f-days">00</span><span class="unit-label">Dias</span></div>
+                <div class="countdown-unit"><span class="unit-val" id="f-hours">00</span><span class="unit-label">Horas</span></div>
+                <div class="countdown-unit"><span class="unit-val" id="f-minutes">00</span><span class="unit-label">Min</span></div>
+                <div class="countdown-unit"><span class="unit-val" id="f-seconds">00</span><span class="unit-label">Seg</span></div>
+            </div>
         </div>
     </div>
 
-    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" id="side-pinscher">
+    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
 
     <audio id="musicaTema" preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
@@ -281,9 +362,9 @@
     <div class="music-player-container">
         <div id="song-info" class="song-info">Dias de Luta, Dias de Glória</div>
         <div class="player-controls">
-            <button class="nav-btn" onclick="changeTrack(-1)">❮</button>
-            <button id="floating-play" onclick="toggleMusic()">♪</button>
-            <button class="nav-btn" onclick="changeTrack(1)">❯</button>
+            <button class="nav-btn" onclick="changeTrack(-1)" title="Anterior">❮</button>
+            <button id="floating-play" onclick="toggleMusic()" title="Tocar música">♪</button>
+            <button class="nav-btn" onclick="changeTrack(1)" title="Próxima">❯</button>
         </div>
     </div>
 
@@ -305,6 +386,7 @@
             <div class="timeline-card-content">
                 <h3>12 de Janeiro</h3>
                 <p>O Jardim Alvorada e aquela chuva que trouxe minha Bíblia (e você) de volta pra mim.</p>
+                <a href="https://maps.app.goo.gl/HH9NfhU58ULLvssB8" class="map-btn">Ver Local</a>
             </div>
         </div>
 
@@ -318,6 +400,7 @@
             <div class="timeline-card-content">
                 <h3>22 de Março</h3>
                 <p>Eldorado. O dia em que te vi subindo aquela galeria e meu coração entendeu.</p>
+                <a href="https://maps.app.goo.gl/5AvMWvaop37R8Gvs8" class="map-btn">Ver Local</a>
             </div>
         </div>
 
@@ -336,7 +419,8 @@
             </div>
             <div class="timeline-card-content">
                 <h3>09 de Abril</h3>
-                <p>CCB Central. O primeiro beijo e a certeza de que nossa história seria única.</p>
+                <p>CCB Central. O primeiro beijo e a certeza de que "Dias de Luta, Dias de Glória" seria o nosso hino.</p>
+                <a href="https://maps.app.goo.gl/qDv4HmChRf1ExQf46" class="map-btn">Ver Local</a>
             </div>
         </div>
 
@@ -348,7 +432,8 @@
             </div>
             <div class="timeline-card-content">
                 <h3>12 de Abril</h3>
-                <p>Nosso primeiro passeio oficial no Parque Ecológico. Onde nossa intimidade floresceu.</p>
+                <p>Nosso primeiro passeio oficial no Parque Ecológico. Entre conversas e caminhadas, criamos uma intimidade única.</p>
+                <a href="https://maps.app.goo.gl/fkAvq15z9x3goNQY6" class="map-btn">Ver Local</a>
             </div>
         </div>
 
@@ -368,11 +453,7 @@
         <div class="hymns-unified-section">
             <h4>Nossa Trilha Sonora</h4>
             <div class="musical-staff">
-                <div class="staff-line"></div>
-                <div class="staff-line"></div>
-                <div class="staff-line"></div>
-                <div class="staff-line"></div>
-                <div class="staff-line"></div>
+                <div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div>
                 <span class="floating-note n1">♪</span>
                 <span class="floating-note n2">♫</span>
                 <span class="floating-note n3">♪</span>
@@ -408,7 +489,7 @@
                 </div>
             </div>
             
-            <a href="LINK_ALBUM" target="_blank" class="album-button">
+            <a href="COLOQUE_AQUI_O_LINK_DO_ALBUM_GOOGLE_FOTOS" target="_blank" class="album-button">
                 <div class="photo-frame">
                     <span style="font-size:3rem;">📸</span>
                     <span style="font-family:'Playfair Display'; color:var(--color-moss-green); font-weight:600;">Nosso Álbum</span>
@@ -419,7 +500,7 @@
 
     <footer>
         <p>CONTAGEM • SABARÁ • BH</p>
-        <p>NOSSO "SIM" EM 14 DE ABRIL DE 2027</p>
+        <p>NOSSO "SIM" ESTÁ CHEGANDO: 14 DE ABRIL DE 2027</p>
     </footer>
 
     <div id="envelopeModal" class="modal">
@@ -435,7 +516,7 @@
             <span class="close-btn" onclick="closeVideoModal()">×</span>
             <h3 style="font-family:'Playfair Display'; color:var(--color-moss-green);">Nossa História em Vídeo</h3>
             <div class="video-container">
-                <iframe id="videoIframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+                <iframe id="videoIframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -444,18 +525,22 @@
         const playlist = [
             { title: "Dias de Luta, Dias de Glória", file: "musica.mp3" },
             { title: "Explodir - Anavitória", file: "musica2.mp3" },
-            { title: "Leal - Djonga", file: "musica3.mp3" }
+            { title: "Leal - Djonga", file: "musica3.mp3" },
+            { title: "Cor de Marte - Anavitória", file: "musica4.mp3" }
         ];
         const envelopeMessages = [
-            { title: "Primeira Viagem", message: "Quando finalmente dissermos 'sim', vamos explorar o mundo juntos." },
-            { title: "Chave da Nossa Casa", message: "Um lar é onde o coração encontra paz. Quando abrirmos aquela porta, saberemos que construímos algo real." },
-            { title: "Promessas Eternas", message: "Neste envelope estão as promessas de amor e respeito que faremos no altar." }
+            { title: "Primeira Viagem", message: "Quando finalmente dissermos 'sim', vamos explorar o mundo juntos. Este envelope guarda o destino que ainda não sabemos, mas que será perfeito porque estaremos lado a lado." },
+            { title: "Chave da Nossa Casa", message: "Um lar não é apenas um lugar, é onde o coração encontra paz. Quando abrirmos aquela porta juntos, saberemos que construímos algo que vai muito além de paredes e telhado." },
+            { title: "Promessas Eternas", message: "Neste envelope estão todas as promessas que faremos um ao outro no altar. Promessas de amor, respeito, cumplicidade e de sempre escolher 'nós'." }
         ];
 
         let currentTrackIndex = 0;
         const audio = document.getElementById('musicaTema');
         const playButton = document.getElementById('floating-play');
         const songInfo = document.getElementById('song-info');
+        const videoIframe = document.getElementById('videoIframe');
+
+        audio.addEventListener('ended', function() { changeTrack(1); audio.play(); });
 
         function toggleMusic() {
             if (audio.paused) {
@@ -480,11 +565,16 @@
             document.getElementById('envelopeModal').style.display = 'block';
         }
         function closeEnvelopeModal() { document.getElementById('envelopeModal').style.display = 'none'; }
+        
         function openVideoModal() { 
             if (!audio.paused) toggleMusic();
             document.getElementById('videoModal').style.display = 'block'; 
         }
-        function closeVideoModal() { document.getElementById('videoModal').style.display = 'none'; }
+        function closeVideoModal() { 
+            document.getElementById('videoModal').style.display = 'none'; 
+            const iframeSrc = videoIframe.src;
+            videoIframe.src = iframeSrc;
+        }
 
         window.onclick = function(e) {
             if (e.target.className === 'modal') {
@@ -505,15 +595,11 @@
 
         window.addEventListener('scroll', function() {
             const capa = document.getElementById('page-capa');
-            const fixedHeader = document.getElementById('fixed-header');
-            const fixedFooter = document.getElementById('fixed-footer');
-            const sidePinscher = document.getElementById('side-pinscher');
-            
             const isBelowCapa = capa.getBoundingClientRect().bottom < 0;
-            fixedHeader.classList.toggle('visible', isBelowCapa);
-            fixedFooter.classList.toggle('visible', isBelowCapa);
-            sidePinscher.classList.toggle('visible', isBelowCapa);
-
+            document.getElementById('fixed-header').classList.toggle('visible', isBelowCapa);
+            document.getElementById('fixed-footer').classList.toggle('visible', isBelowCapa);
+            document.querySelector('.corner-top-left').classList.toggle('visible', isBelowCapa);
+            
             // Ajuste da Linha
             const section = document.getElementById('main-section');
             const targetContent = document.getElementById('content-25-mai');
