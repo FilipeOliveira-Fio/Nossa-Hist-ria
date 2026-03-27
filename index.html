@@ -68,7 +68,14 @@
         @keyframes musicPlaying { 0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 118, 0.7), 0 0 0 0 rgba(139, 157, 131, 0.5); } 50% { box-shadow: 0 0 0 10px rgba(201, 168, 118, 0), 0 0 0 20px rgba(139, 157, 131, 0); } }
         @keyframes envelopeFloat { 0%, 100% { transform: translateY(0px) rotateZ(0deg); } 50% { transform: translateY(-15px) rotateZ(2deg); } }
         @keyframes envelopeHover { 0% { transform: translateY(-15px) rotateZ(2deg) scale(1); } 50% { transform: translateY(-25px) rotateZ(3deg) scale(1.05); } 100% { transform: translateY(-15px) rotateZ(2deg) scale(1); } }
-        @keyframes noteFloat { 0%, 100% { opacity: 0.3; transform: translateY(0px) translateX(0px); } 50% { opacity: 0.6; transform: translateY(-20px) translateX(10px); } }
+        
+        /* ===== NOVAS ANIMAÇÕES PARA NOTAS MUSICAIS ===== */
+        @keyframes noteFloat1 { 0% { opacity: 0; transform: translateY(0px) translateX(0px); } 25% { opacity: 0.6; } 50% { opacity: 0.8; transform: translateY(-40px) translateX(20px); } 75% { opacity: 0.4; } 100% { opacity: 0; transform: translateY(-80px) translateX(40px); } }
+        @keyframes noteFloat2 { 0% { opacity: 0; transform: translateY(0px) translateX(0px); } 25% { opacity: 0.5; } 50% { opacity: 0.7; transform: translateY(-50px) translateX(-25px); } 75% { opacity: 0.3; } 100% { opacity: 0; transform: translateY(-90px) translateX(-50px); } }
+        @keyframes noteFloat3 { 0% { opacity: 0; transform: translateY(0px) translateX(0px); } 25% { opacity: 0.6; } 50% { opacity: 0.8; transform: translateY(-35px) translateX(15px); } 75% { opacity: 0.4; } 100% { opacity: 0; transform: translateY(-75px) translateX(35px); } }
+        @keyframes noteRotate { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
+        @keyframes notePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        
         @keyframes photoFrameFloat { 0%, 100% { transform: translateY(0px) rotateZ(-3deg); } 50% { transform: translateY(-12px) rotateZ(-3deg); } }
         @keyframes photoFrameHover { 0% { transform: translateY(-12px) rotateZ(-3deg) scale(1); } 50% { transform: translateY(-20px) rotateZ(0deg) scale(1.08); } 100% { transform: translateY(-12px) rotateZ(-3deg) scale(1); } }
 
@@ -210,7 +217,7 @@
         .highlight-section h4 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--color-moss-green); }
         .map-btn { display: inline-block; margin-top: 15px; padding: 10px 20px; color: var(--color-terracotta); text-decoration: none; border: 1px solid var(--color-terracotta); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-weight: 600; cursor: pointer; background: none; }
 
-        /* Unificação: Se eu crer + Próximo Hino */
+        /* ===== UNIFICAÇÃO: NOSSA TRILHA SONORA COM ANIMAÇÕES CRIATIVAS ===== */
         .hymns-unified-section {
             background: linear-gradient(135deg, rgba(245, 230, 211, 0.8), rgba(232, 213, 208, 0.6));
             padding: 60px 40px;
@@ -225,13 +232,67 @@
         }
 
         .hymns-unified-section h4 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--color-moss-green); margin-bottom: 20px; }
-        .hymns-unified-section .musical-staff { width: 100%; max-width: 400px; height: 60px; margin: 20px auto; position: relative; }
-        .hymns-unified-section .staff-line { position: absolute; width: 100%; height: 1px; background: var(--color-terracotta); opacity: 0.3; }
-        .hymns-unified-section .staff-line:nth-child(1) { top: 20%; }
-        .hymns-unified-section .staff-line:nth-child(2) { top: 40%; }
-        .hymns-unified-section .staff-line:nth-child(3) { top: 60%; }
-        .hymns-unified-section .staff-line:nth-child(4) { top: 80%; }
-        .hymns-unified-section .staff-line:nth-child(5) { top: 100%; }
+        
+        /* ===== PENTAGRAMA COM NOTAS ANIMADAS ===== */
+        .musical-staff { 
+            width: 100%; 
+            max-width: 500px; 
+            height: 100px; 
+            margin: 30px auto; 
+            position: relative;
+            background: linear-gradient(to bottom, transparent 0%, rgba(201, 168, 118, 0.05) 50%, transparent 100%);
+            border-radius: 8px;
+            padding: 20px 0;
+        }
+        
+        .staff-line { 
+            position: absolute; 
+            width: 100%; 
+            height: 2px; 
+            background: linear-gradient(to right, var(--color-terracotta), var(--color-moss-green), var(--color-terracotta));
+            opacity: 0.5;
+        }
+        .staff-line:nth-child(1) { top: 15%; }
+        .staff-line:nth-child(2) { top: 32%; }
+        .staff-line:nth-child(3) { top: 50%; }
+        .staff-line:nth-child(4) { top: 68%; }
+        .staff-line:nth-child(5) { top: 85%; }
+
+        /* ===== NOTAS FLUTUANTES CRIATIVAS ===== */
+        .floating-note {
+            position: absolute;
+            font-size: 2rem;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        .floating-note:nth-child(6) {
+            left: 5%;
+            top: 20%;
+            color: var(--color-terracotta);
+            animation: noteFloat1 3s ease-in-out infinite;
+        }
+
+        .floating-note:nth-child(7) {
+            right: 10%;
+            top: 35%;
+            color: var(--color-moss-green);
+            animation: noteFloat2 3.5s ease-in-out infinite 0.5s;
+        }
+
+        .floating-note:nth-child(8) {
+            left: 15%;
+            top: 60%;
+            color: var(--color-terracotta);
+            animation: noteFloat3 3.2s ease-in-out infinite 1s;
+        }
+
+        .floating-note:nth-child(9) {
+            right: 20%;
+            top: 75%;
+            color: var(--color-moss-green);
+            animation: noteFloat1 3.8s ease-in-out infinite 1.5s;
+        }
 
         /* Envelopes + Álbum Integrado */
         .envelopes-section { margin: 80px 0; text-align: center; position: relative; z-index: 1; }
@@ -254,13 +315,63 @@
         .frame-icon { font-size: 3.5rem; margin-bottom: 10px; }
         .frame-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-moss-green); font-weight: 600; }
 
-        /* Modais */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); animation: fadeInUp 0.3s ease-out; }
-        .modal-content { background-color: var(--color-cream); margin: 5% auto; padding: 40px; border: 2px solid var(--color-terracotta); border-radius: 8px; width: 90%; max-width: 600px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); position: relative; }
-        .close-btn { color: var(--color-terracotta); position: absolute; right: 20px; top: 10px; font-size: 2.5rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
+        /* ===== MODAIS CENTRALIZADOS ===== */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.6); 
+            animation: fadeInUp 0.3s ease-out;
+            overflow-y: auto;
+        }
+        
+        .modal-content { 
+            background-color: var(--color-cream); 
+            padding: 40px; 
+            border: 2px solid var(--color-terracotta); 
+            border-radius: 8px; 
+            width: 90%; 
+            max-width: 600px; 
+            text-align: center; 
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .close-btn { 
+            color: var(--color-terracotta); 
+            position: absolute; 
+            right: 20px; 
+            top: 10px; 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
         .close-btn:hover { color: var(--color-moss-green); }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; border: 1px solid var(--color-beige-warm); }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        .video-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            margin-top: 20px; 
+            border-radius: 8px; 
+            border: 1px solid var(--color-beige-warm); 
+        }
+        .video-container iframe { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+        }
 
         footer { padding: 120px 20px 180px; text-align: center; border-top: 2px solid var(--color-terracotta); position: relative; z-index: 1; }
 
@@ -273,6 +384,9 @@
             .timeline-line, .corner-instruments, .decorative-corner { display: none; }
             .fixed-header h2 { font-size: 1.1rem; }
             .fixed-header p { font-size: 0.7rem; }
+            .musical-staff { height: 80px; }
+            .floating-note { font-size: 1.5rem; }
+            .modal-content { width: 95%; max-width: 500px; padding: 30px; }
         }
     </style>
 </head>
@@ -401,13 +515,19 @@
             </div>
         </div>
 
-        <!-- Unificação: Se eu crer + Próximo Hino -->
+        <!-- ===== NOSSA TRILHA SONORA COM ANIMAÇÕES CRIATIVAS ===== -->
         <div class="hymns-unified-section">
             <h4>Nossa Trilha Sonora</h4>
             <div class="musical-staff">
-                <div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div>
-                <span class="floating-note" style="left:10%; top:10%;">♪</span>
-                <span class="floating-note" style="right:15%; top:30%;">♫</span>
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <div class="staff-line"></div>
+                <span class="floating-note">♪</span>
+                <span class="floating-note">♫</span>
+                <span class="floating-note">♪</span>
+                <span class="floating-note">♫</span>
             </div>
             <p style="font-style: italic; margin-bottom: 20px;">
                 <strong>"Se eu crer"</strong> foi o primeiro hino que você me enviou, marcando o início da nossa fé compartilhada. 
@@ -459,7 +579,7 @@
         </div>
     </section>
 
-    <!-- Modais -->
+    <!-- ===== MODAIS CENTRALIZADOS ===== -->
     <div id="envelopeModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeEnvelopeModal()">&times;</span>
@@ -497,6 +617,7 @@
         const playButton = document.getElementById('floating-play');
         const songInfo = document.getElementById('song-info');
         const videoIframe = document.getElementById('videoIframe');
+        let videoWasPlaying = false;
 
         // Troca Automática de Música
         audio.addEventListener('ended', function() {
@@ -521,30 +642,45 @@
             if (isPlaying) audio.play();
         }
 
-        // Modais
+        // ===== MODAIS COM CENTRALIZAÇÃO E CONTROLE DE VÍDEO ===== 
         function openEnvelopeModal(index) {
             document.getElementById('modalTitle').innerText = envelopeMessages[index].title;
             document.getElementById('modalMessage').innerText = envelopeMessages[index].message;
             document.getElementById('envelopeModal').style.display = 'block';
         }
-        function closeEnvelopeModal() { document.getElementById('envelopeModal').style.display = 'none'; }
+        
+        function closeEnvelopeModal() { 
+            document.getElementById('envelopeModal').style.display = 'none'; 
+        }
 
         function openVideoModal() {
             if (!audio.paused) {
                 audio.pause();
                 playButton.classList.remove('playing');
+                videoWasPlaying = true;
             }
             document.getElementById('videoModal').style.display = 'block';
         }
+        
         function closeVideoModal() {
             document.getElementById('videoModal').style.display = 'none';
+            // ===== PARAR VÍDEO AO FECHAR ===== 
             const iframeSrc = videoIframe.src;
+            videoIframe.src = '';
             videoIframe.src = iframeSrc;
+            // Retomar música se estava tocando
+            if (videoWasPlaying) {
+                audio.play();
+                playButton.classList.add('playing');
+                videoWasPlaying = false;
+            }
         }
 
         window.onclick = function(e) {
-            if (e.target.className === 'modal') {
+            if (e.target.id === 'envelopeModal') {
                 closeEnvelopeModal();
+            }
+            if (e.target.id === 'videoModal') {
                 closeVideoModal();
             }
         };
