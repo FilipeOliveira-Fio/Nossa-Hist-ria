@@ -89,10 +89,10 @@
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-romantic-header-bg-64AT24ucETWGVbnGvxAjYD.webp');
+            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/MHlgjQJEjEEEPbpy.png');
             background-size: cover;
             background-position: center;
-            opacity: 0.4;
+            opacity: 0.35;
             z-index: 0;
         }
 
@@ -107,7 +107,7 @@
             left: 0;
             width: 100%;
             background: linear-gradient(135deg, rgba(255, 248, 240, 0.92) 0%, rgba(255, 251, 247, 0.92) 50%, rgba(245, 230, 211, 0.92) 100%);
-            background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-romantic-header-bg-64AT24ucETWGVbnGvxAjYD.webp'), linear-gradient(135deg, rgba(255, 248, 240, 0.92) 0%, rgba(255, 251, 247, 0.92) 50%, rgba(245, 230, 211, 0.92) 100%);
+            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/MHlgjQJEjEEEPbpy.png'), linear-gradient(135deg, rgba(255, 248, 240, 0.92) 0%, rgba(255, 251, 247, 0.92) 50%, rgba(245, 230, 211, 0.92) 100%);
             background-size: cover, cover;
             background-position: center, center;
             background-blend-mode: overlay;
@@ -132,11 +132,16 @@
             bottom: -200px;
             left: 0;
             width: 100%;
-            background: rgba(255, 248, 240, 0.95);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(255, 248, 240, 0.93) 0%, rgba(255, 251, 247, 0.93) 50%, rgba(245, 230, 211, 0.93) 100%);
+            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/YLAVsrJsbRZZPHtw.png'), linear-gradient(135deg, rgba(255, 248, 240, 0.93) 0%, rgba(255, 251, 247, 0.93) 50%, rgba(245, 230, 211, 0.93) 100%);
+            background-size: cover, cover;
+            background-position: center, center;
+            background-repeat: repeat-x, no-repeat;
+            background-blend-mode: overlay;
+            backdrop-filter: blur(8px);
             padding: 15px 20px;
             z-index: 1100;
-            box-shadow: 0 -2px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
             transition: bottom 0.4s ease;
             text-align: center;
             border-top: 1px solid var(--color-terracotta);
@@ -152,7 +157,7 @@
         /* Miniplayer */
         .music-player-container {
             position: fixed;
-            bottom: 100px; /* Ajustado para não sobrepor o rodapé fixo */
+            bottom: 100px;
             right: 30px;
             display: flex;
             flex-direction: column;
@@ -166,6 +171,7 @@
         .song-info { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--color-moss-green); background: rgba(255, 248, 240, 0.85); padding: 4px 15px; border-radius: 20px; border: 1px solid var(--color-beige-warm); backdrop-filter: blur(5px); white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .player-controls { display: flex; align-items: center; gap: 10px; background: rgba(255, 248, 240, 0.9); padding: 8px 18px; border-radius: 50px; border: 1px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); }
         .nav-btn { background: none; border: none; color: var(--color-terracotta); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+        .nav-btn:hover { color: var(--color-moss-green); transform: scale(1.1); }
         #floating-play { background: linear-gradient(135deg, var(--color-terracotta), var(--color-moss-green)); color: var(--color-cream); border: 2px solid rgba(255, 248, 240, 0.5); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.4rem; transition: all 0.3s ease; animation: softPulse 3s ease-in-out infinite; }
         #floating-play.playing { animation: musicPlaying 1.5s ease-in-out infinite; }
 
@@ -299,13 +305,12 @@
     <header id="page-capa">
         <h1>Carol & Filipe</h1>
         <p class="subtitle">A morada dos meus sonhos</p>
-        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-musical-notes-divider-Rr8n2gLwKfew28VKY2ejcX.webp" style="width:100%; max-width:400px; opacity:0.7;" alt="divider">
     </header>
 
     <section id="main-section">
         <div class="timeline-line" id="timeline-line"></div>
 
-        <!-- Timeline Cards (Preservados) -->
+        <!-- Timeline Cards -->
         <div class="timeline-card image-left">
             <div class="timeline-card-image" id="slider-12-jan">
                 <button class="slider-arrow arrow-left" onclick="moveSlide('slider-12-jan', -1)">❮</button>
@@ -381,7 +386,7 @@
             </div>
         </div>
 
-        <!-- Adequação 2: Unificação de Hinos -->
+        <!-- Unificação: Se eu crer + Próximo Hino -->
         <div class="hymns-unified-section">
             <h4>Nossa Trilha Sonora</h4>
             <div class="musical-staff">
@@ -397,7 +402,7 @@
             <button class="map-btn" onclick="openVideoModal()">Assistir Momento Especial</button>
         </div>
 
-        <!-- Adequação 3: Envelopes + Álbum Integrado -->
+        <!-- Envelopes + Álbum Integrado -->
         <div class="envelopes-section">
             <h2 class="envelopes-title">Os Envelopes do Amanhã</h2>
             <p class="envelopes-subtitle">Mistérios e momentos que ainda iremos viver e registrar</p>
@@ -440,7 +445,6 @@
     </section>
 
     <footer>
-        <p>CONTAGEM • SABARÁ • BH</p>
     </footer>
 
     <!-- Modais -->
@@ -457,7 +461,6 @@
             <span class="close-btn" onclick="closeVideoModal()">&times;</span>
             <h3 style="font-family:'Playfair Display'; color:var(--color-moss-green);">Nossa História em Vídeo</h3>
             <div class="video-container">
-                <!-- Substitua o ID do vídeo pelo seu vídeo de escolha -->
                 <iframe id="videoIframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
@@ -483,7 +486,7 @@
         const songInfo = document.getElementById('song-info');
         const videoIframe = document.getElementById('videoIframe');
 
-        // Adequação 1: Troca Automática de Música
+        // Troca Automática de Música
         audio.addEventListener('ended', function() {
             changeTrack(1);
             audio.play();
@@ -515,7 +518,6 @@
         function closeEnvelopeModal() { document.getElementById('envelopeModal').style.display = 'none'; }
 
         function openVideoModal() {
-            // Para a música tema ao abrir o vídeo
             if (!audio.paused) {
                 audio.pause();
                 playButton.classList.remove('playing');
@@ -524,7 +526,6 @@
         }
         function closeVideoModal() {
             document.getElementById('videoModal').style.display = 'none';
-            // Para o vídeo ao fechar o modal
             const iframeSrc = videoIframe.src;
             videoIframe.src = iframeSrc;
         }
@@ -547,7 +548,7 @@
             imgs[nextIdx].classList.add('active');
         }
 
-        // Adequação 5: Cabeçalho e Rodapé Fixos + Visibilidade
+        // Cabeçalho e Rodapé Fixos
         const fixedHeader = document.getElementById('fixed-header');
         const fixedFooter = document.getElementById('fixed-footer');
         const capa = document.getElementById('page-capa');
@@ -564,7 +565,7 @@
             adjustTimelineLine();
         });
 
-        // Contador Regressivo (Rodapé)
+        // Contador Regressivo
         const targetDate = new Date("April 14, 2027 00:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
