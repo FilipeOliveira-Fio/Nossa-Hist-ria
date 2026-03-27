@@ -720,6 +720,7 @@
             if (videoPlayer) {
                 videoPlayer.currentTime = 0;  // Volta ao início
                 videoPlayer.pause();           // Garante que está pausado
+                videoPlayer.load();            // Recarrega o vídeo
             }
             document.getElementById('videoModal').style.display = 'block';
         }
@@ -730,8 +731,6 @@
             if (videoPlayer) {
                 videoPlayer.pause();
                 videoPlayer.currentTime = 0;
-                // Força parada completa
-                videoPlayer.src = videoPlayer.src;
             }
             // Retomar música se estava tocando
             if (videoWasPlaying) {
