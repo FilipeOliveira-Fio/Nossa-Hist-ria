@@ -117,17 +117,17 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             transition: top 0.4s ease;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             border-bottom: 1px solid var(--color-terracotta);
         }
 
         .fixed-header.visible { top: 0; }
-        .header-content { display: flex; flex-direction: column; align-items: center; flex: 1; }
+        .header-decorative { width: 100px; height: 100px; opacity: 0.2; animation: floatGently 6s ease-in-out infinite; display: none; }
+        .header-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .fixed-header h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--color-moss-green); margin: 0; }
         .fixed-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--color-terracotta); margin: 0; }
-        .header-decorative { width: 100px; height: 100px; opacity: 0.2; animation: floatGently 6s ease-in-out infinite; }
 
         /* Rodapé Fixo */
         .fixed-footer {
@@ -146,22 +146,24 @@
             box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
             transition: bottom 0.4s ease;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             border-top: 1px solid var(--color-terracotta);
         }
 
         .fixed-footer.visible { bottom: 0; }
-        .footer-left { display: flex; align-items: center; gap: 15px; flex: 1; }
-        .footer-decorative { width: 80px; height: 80px; opacity: 0.2; animation: floatGently 8s ease-in-out infinite reverse; }
-        .fixed-footer .cities { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin: 0; }
-        .footer-center { display: flex; flex-direction: column; align-items: center; flex: 1; }
+        .footer-left { display: none; }
+        .footer-decorative { display: none; }
+        .fixed-footer .cities { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 5px; }
+        .footer-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .fixed-footer .countdown-mini { display: flex; justify-content: center; gap: 15px; margin: 5px 0 0 0; }
         .fixed-footer .countdown-unit { display: flex; flex-direction: column; min-width: 40px; }
         .fixed-footer .unit-val { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--color-terracotta); font-size: 1.2rem; }
         .fixed-footer .unit-label { font-size: 0.6rem; text-transform: uppercase; color: var(--color-text-light); }
-        .footer-player { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 0 0 auto; }
+        .footer-player { display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.6; transition: opacity 0.4s ease; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+        .footer-player:hover { opacity: 1; }
+        .footer-label { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 5px; }
 
         /* Miniplayer */
         .music-player-container {
@@ -290,16 +292,12 @@
             <h2>Carol & Filipe</h2>
             <p>Minha gata, morada dos meus sonhos</p>
         </div>
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663481563864/bGwfByAmFpDaTAer.png" class="header-decorative" alt="decorative" style="animation-direction: reverse;">
     </div>
 
     <!-- Rodapé Fixo -->
     <div id="fixed-footer" class="fixed-footer">
-        <div class="footer-left">
-            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-folk-corner-ornament-GLK6fZmrGuHwGZhCH49GFT.webp" class="footer-decorative" alt="decorative">
-            <div class="cities">CONTAGEM • SABARÁ • BH</div>
-        </div>
         <div class="footer-center">
+            <div class="footer-label">Nosso 'SIM' em:</div>
             <div id="footer-countdown" class="countdown-mini">
                 <div class="countdown-unit"><span class="unit-val" id="f-days">00</span><span class="unit-label">Dias</span></div>
                 <div class="countdown-unit"><span class="unit-val" id="f-hours">00</span><span class="unit-label">Horas</span></div>
