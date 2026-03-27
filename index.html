@@ -716,6 +716,11 @@
                 playButton.classList.remove('playing');
                 videoWasPlaying = true;
             }
+            // ===== RESETAR VÍDEO PARA PERMITIR REPRODUÇÃO NOVAMENTE ===== 
+            if (videoPlayer) {
+                videoPlayer.currentTime = 0;  // Volta ao início
+                videoPlayer.pause();           // Garante que está pausado
+            }
             document.getElementById('videoModal').style.display = 'block';
         }
         
