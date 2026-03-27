@@ -56,7 +56,7 @@
             pointer-events: none;
         }
 
-        .corner-top-left { display: none; }
+        .corner-top-left { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); width: 150px; height: 150px; animation: floatGently 6s ease-in-out infinite; z-index: 10; }
         .corner-bottom-right { display: none; }
         .corner-instruments { display: none; }
 
@@ -161,14 +161,13 @@
         .fixed-footer .countdown-unit { display: flex; flex-direction: column; min-width: 40px; }
         .fixed-footer .unit-val { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--color-terracotta); font-size: 1.2rem; }
         .fixed-footer .unit-label { font-size: 0.6rem; text-transform: uppercase; color: var(--color-text-light); }
-        .footer-player { display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.6; transition: opacity 0.4s ease; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-        .footer-player:hover { opacity: 1; }
+        .footer-player { display: none; }
         .footer-label { font-size: 0.8rem; letter-spacing: 2px; color: var(--color-text-light); margin-bottom: 5px; }
 
         /* Miniplayer */
         .music-player-container {
             position: fixed;
-            bottom: 100px;
+            bottom: 180px;
             right: 30px;
             display: flex;
             flex-direction: column;
@@ -179,13 +178,6 @@
             transition: all 0.4s ease;
         }
         .music-player-container:hover { opacity: 1; }
-        .music-player-container.in-footer {
-            position: static;
-            opacity: 1;
-            transition: none;
-            align-items: center;
-        }
-        .music-player-container.in-footer:hover { opacity: 1; }
         .song-info { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--color-moss-green); background: rgba(255, 248, 240, 0.85); padding: 4px 15px; border-radius: 20px; border: 1px solid var(--color-beige-warm); backdrop-filter: blur(5px); white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .player-controls { display: flex; align-items: center; gap: 10px; background: rgba(255, 248, 240, 0.9); padding: 8px 18px; border-radius: 50px; border: 1px solid var(--color-terracotta); box-shadow: 0 10px 30px rgba(201, 168, 118, 0.2); }
         .nav-btn { background: none; border: none; color: var(--color-terracotta); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
@@ -305,19 +297,24 @@
                 <div class="countdown-unit"><span class="unit-val" id="f-seconds">00</span><span class="unit-label">Seg</span></div>
             </div>
         </div>
-        <div class="footer-player">
-            <div id="song-info" class="song-info">Dias de Luta, Dias de Glória</div>
-            <div class="player-controls">
-                <button class="nav-btn" onclick="changeTrack(-1)" title="Anterior">❮</button>
-                <button id="floating-play" onclick="toggleMusic()" title="Tocar música">♪</button>
-                <button class="nav-btn" onclick="changeTrack(1)" title="Próxima">❯</button>
-            </div>
-        </div>
+
     </div>
+
+    <!-- Decorativos -->
+    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663334549842/acm32jsV2TJStCVFB9fYAa/carol-pinscher-watercolor-iJdJthGbrsfuEQZFYWXAk2.webp" class="decorative-corner corner-top-left" alt="decorative pinscher">
 
     <audio id="musicaTema" preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
+
+    <div class="music-player-container">
+        <div id="song-info" class="song-info">Dias de Luta, Dias de Glória</div>
+        <div class="player-controls">
+            <button class="nav-btn" onclick="changeTrack(-1)" title="Anterior">❮</button>
+            <button id="floating-play" onclick="toggleMusic()" title="Tocar música">♪</button>
+            <button class="nav-btn" onclick="changeTrack(1)" title="Próxima">❯</button>
+        </div>
+    </div>
 
     <header id="page-capa">
         <h1>Carol & Filipe</h1>
@@ -460,9 +457,6 @@
             </div>
         </div>
     </section>
-
-    <footer>
-    </footer>
 
     <!-- Modais -->
     <div id="envelopeModal" class="modal">
